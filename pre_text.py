@@ -1,4 +1,4 @@
-import string, os, glob
+import string, os, glob, time
 import cleaner
 
 chap1 = '1-introduction'
@@ -14,6 +14,8 @@ chap9 = '9-matlab-primer'
 chap_list = [chap1, chap2, chap3, chap4, chap5, chap6, chap7, chap8,chap9]
 #chap_list = [chap7]
 
+# for i in range(0,19):
+start_time = time.time()
 for chap in chap_list:
 
     inputpath='/Users/Zhenghao/Desktop/URECA/Text cleaning related/Demo/corpus/DSP_books/raw_introduction-to-digital-signal-processing-exported/'+chap+'/'
@@ -30,19 +32,19 @@ for chap in chap_list:
             print('reading '+afile)
             for line in inputfile :
                     line = cleaner.string_validation(line)
-                    line = cleaner.remove_figuretitles(line)
                     line = cleaner.remove_formula(line)
-                    line = cleaner.join_brokenwords(line)
                     line = cleaner.remove_inlineformula(line)
+                    line = cleaner.remove_inlinefunction(line)
+                    line = cleaner.join_brokenwords(line)
                     line = cleaner.replace_known(line)
                     outputfile.write(line)
             file_str = cleaner.merge_placeholder(outputfile)
             outputfile.seek(0)
             outputfile.truncate()
             outputfile.write(file_str)
- #           outputfile.seek(0)
-#            for line in outputfile:
-#                line = cleaner.merge_placeholder(line)
-#                outputfile.write(line)
             outputfile.close()
             inputfile.close()
+stop_time = time.time()
+print("-------- %s seconds ---------" % (stop_time - start_time))
+# total_time += stop_time - start_time
+# print('Average time: {}'.format(total_time/20))

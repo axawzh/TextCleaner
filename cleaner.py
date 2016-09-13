@@ -59,6 +59,10 @@ stopwords = [
 KNOWN_REPLACEMENTS = [
     ('ﬁ', 'fi'), ('ﬂ', 'fl')
 ]
+formula_pattern = r'\b[^\s]* =( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b'
+expression_pattern = r'\b( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))+( ?= ?[+−]?\d+(\.\d+)?)?\b' # formula without '='
+function_pattern = r'[δ\w]+\d? ?\(.+?\)'
+range_pattern = r'−?(\d+|\w|∞)? [≤≥><] −?(\d+|\w|∞)'
 
 def count_endingfullstop(string):
     num_fullstop = 0
@@ -154,15 +158,34 @@ def join_brokenwords(string):# joining the brokenwords together
 def remove_inlineformula(string): # remove formulas that hide inside a sentence
     if not string:
         return string
-    string_nobracket = re.sub(r'[()]+', '', string)
-    have_formula = re.search(r'\b\w* =( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b', string_nobracket)
+    # brackets can appear anywhere in a formula,
+    # remove the brackets for easier regex matching
+    string_nobracket = re.sub(r'[()]+', '', string) 
+    have_formula = re.search(formula_pattern, string_nobracket)
+    have_function = re.search(function_pattern, string)
     if have_formula:
-            string_noformula = re.sub(r'\b\w* =( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b', \
-                                        '[FORMULA]', string_nobracket)
-                #\b\w* =( ?[+\−]?\w+([\.,]\d+)? ?)([+\−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b
-            return string_noformula
+        # the removal of function relies on brackets,
+        # therefore if a line contains both function and formula,
+        # function must be removed first before formula
+ #       if have_function:
+#            string_noformula = re.sub(function_pattern, '[FORMULA]', string)
+#            string_nobracket = re.sub(r'[()]+', '', string_noformula)
+        string_noformula = re.sub(formula_pattern, '[FORMULA]', string_nobracket)
+        string_noformula = re.sub(expression_pattern, '[FORMULA]', string_noformula)
+        return string_noformula
     else:
-            return string
+        return string
+
+def remove_inlinefunction(string): # function like 'f (n)' and 'x (1)'
+    if not string:
+        return string
+    have_function = re.search(function_pattern, string)
+    have_range = re.search(range_pattern, string)
+    if have_function or have_range:
+        string = re.sub(function_pattern, '[FORMULA]', string)
+        string = re.sub(range_pattern, '[FORMULA]', string)
+    return string
+        
 
 def remove_figuretitles(string):
     if not string:
@@ -178,7 +201,8 @@ def merge_placeholder(file):
     file_str = ''
     file.seek(0)
     for line in file:
-        line = re.sub(r'(\[FORMULA\]){2,}', '[FORMULA]', line)
+        line = re.sub(r'(\[FORMULA\]([,.] ?)?){2,}', '[FORMULA]', line)
+ #       line = re.sub(r'\[FORMULA\]{2,}', '[FORMULA]', line)
         file_str += line
     return file_str
         
