@@ -64,6 +64,7 @@ expression_pattern = r'\b( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))
 function_pattern = r'[δ\w]+\d? ?\(.+?\)'
 range_pattern = r'−?(\d+|\w|∞)? [≤≥><] −?(\d+|\w|∞)'
 
+
 def count_endingfullstop(string):
     num_fullstop = 0
     string_strip = string.strip()
@@ -72,6 +73,7 @@ def count_endingfullstop(string):
 	# count omly full stop at end of a word (full stop in middle of a word may be a float like 3.2)
             num_fullstop += 1
     return num_fullstop
+
 
 def is_formula(string):
     if re.search(r'[A-Za-z]{2,}', string):
@@ -86,6 +88,7 @@ def replace_known(m_string):
     for pair in KNOWN_REPLACEMENTS:
         m_string = m_string.replace(pair[0], pair[1])
     return m_string
+
 
 def remove_formula(string):
     if not string:
@@ -105,6 +108,7 @@ def remove_formula(string):
         else:
             return '[FORMULA]'
 
+
 def string_validation(string):
  #   string = str(string, errors='ignore')
     #'''
@@ -118,30 +122,35 @@ def string_validation(string):
     else:
         return string
 
+
 def remove_stopwords(string):
     string = ' '.join([word for word in string.split() if word not in stopwords])
     return string
 
+
 def remove_shortwords(string):
     string = re.sub(r'\b\w{1,2}\b', '', string)
     return string
-	
-def remove_digits(string):# replace with space ' '
+
+
+def remove_digits(string):  # replace with space ' '
     string = re.sub(r"\b\d+\b", ' ', string)
     return string
 
-def remove_punctuations(string):# replace with space ' '
+
+def remove_punctuations(string):  # replace with space ' '
     string = re.sub(r'[^\w\s]',' ',string)
     return string
 
-def lower_firstword(string):# lowering the capitalized first letter
+
+def lower_firstword(string):  # lowering the capitalized first letter
     sentences = string.split('. ')
     for i in range(0,len(sentences)):
         try:
             if sentences[i] != '':
                 one_sentence = sentences[i].split()
                 one_firstword = one_sentence[0]
-                if not one_firstword.isupper():# do not lower the word with full capital letters
+                if not one_firstword.isupper():  # do not lower the word with full capital letters
                     one_firstword = one_firstword[0].lower() + one_firstword[1:]
                 sentences[i] = ' '.join([word for word in one_sentence])
         except:
@@ -149,11 +158,13 @@ def lower_firstword(string):# lowering the capitalized first letter
     string = ''.join([sentence for sentence in sentences])
     return string
 
+
 def join_brokenwords(string):# joining the brokenwords together
     if not string:
         return string
     string = re.sub(r'\b- \b', '', string)
     return string
+
 
 def remove_inlineformula(string): # remove formulas that hide inside a sentence
     if not string:
@@ -176,6 +187,7 @@ def remove_inlineformula(string): # remove formulas that hide inside a sentence
     else:
         return string
 
+
 def remove_inlinefunction(string): # function like 'f (n)' and 'x (1)'
     if not string:
         return string
@@ -196,7 +208,8 @@ def remove_figuretitles(string):
         return '[FIGURE]'
     else:
         return string
-        
+
+
 def merge_placeholder(file):
     file_str = ''
     file.seek(0)
@@ -205,4 +218,10 @@ def merge_placeholder(file):
  #       line = re.sub(r'\[FORMULA\]{2,}', '[FORMULA]', line)
         file_str += line
     return file_str
-        
+
+
+def remove_nonascii(string):
+    if not string:
+        return string
+    re.sub(r'[^\x00-\x7F]', '', string)
+    return string

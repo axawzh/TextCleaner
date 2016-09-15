@@ -37,6 +37,7 @@ for chap in chap_list:
                     line = cleaner.remove_inlinefunction(line)
                     line = cleaner.join_brokenwords(line)
                     line = cleaner.replace_known(line)
+                    line = cleaner.remove_nonacsii(line)
                     outputfile.write(line)
             file_str = cleaner.merge_placeholder(outputfile)
             outputfile.seek(0)
