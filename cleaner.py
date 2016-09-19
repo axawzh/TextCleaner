@@ -223,5 +223,5 @@ def merge_placeholder(file):
 def remove_nonascii(string):
     if not string:
         return string
-    re.sub(r'[^\x00-\x7F]', '', string)
+    string = re.sub(r'[^\x00-\x7F]', '', string)
     return string
