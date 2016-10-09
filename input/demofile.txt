@@ -1,0 +1,126 @@
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold, Nyquist sampling theorem, Nyquist frequency, aliasing, undersampling.
+1.1 The Sample-and-hold Operation
+Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g˜(t) defined by
+It is convenient to model the sample-and-hold operations as two separate operations. The first operation is sampling the signal by multiplying the signal by a train of delta functions
+A sampler that samples in this fashion—by multiplying the signal to be sampled by a train of delta functions—is called an ideal sampler. The multiplication of g(t) by Δ(t) leaves us with a train of impulse functions. The areas of the impulse functions are equal to the samples of g(t). After ideal sampling, we are left with
+4 1 Understanding Sampling
+The information that we want about the function is here, but the extraneous information—like the values the function takes between sampling times—is gone.
+Next, we would like to take this ideally sampled signal and hold the values between samples. As we have a train of impulses with the correct areas, we need a “block” that takes an impulse with area A, transforms it into a rectangular pulse of height A that starts at the time at which the delta function is input to the block, and persists for exactly Ts seconds. A little bit of thought shows that what we need is a linear, time-invariant (LTI) filter whose impulse response, h(t), is 1 between t = 0 and t = Ts and is zero elsewhere.
+Let us define the Fourier transform of a function, y(t), to be
+Y (f ) = F(y(t))(f ) ≡ e−2πjfty(t) dt.
+It is easy enough to calculate the Fourier transform of h(t)—the frequency response of the filter—it is simply
+(See Exercise 2.)
+1 − e−2πjTsf
+1.2 The Ideal Sampler in the Frequency Domain
+We have seen how the “hold” part of the sample-and-hold operation behaves in the frequency domain. How does the ideal sampler look? To answer this question, we start by considering the Fourier series associated with the function Δ(t).
+Proceeding formally and not considering what is meant by a delta function too carefully1, let us consider Δ(t) to be a periodic function. Then its Fourier series is [7]
+1 The reader interested in a careful presentation of this material is referred to [19].
+1.2 The Ideal Sampler in the Frequency Domain 5
+Fs, the reciprocal of Ts, is the frequency with which the samples are taken. We find that
+In this section, we consider the material of Section 1.2.1 in greater detail and in a more rigorous fashion. (This section can be skipped without loss of continuity.) Rather than proceeding formally, let us try to be more careful in our approach to understanding Δ(t). Let us start by “building” Δ(t) out of complex exponentials. Consider the sums
+e2πjnFst. (1.1)
+We show that as N →∞ the function hN (t) tends, in an interesting sense, to a constant multiple of Δ(t).
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e−2πjN t \ e2πjnFst
+1 − e2πjFst
+When t = m/Fs, it is easy to see that hN (t) = 2N + 1. Considering the limits of hN (t) as t → mTs, we find that hN (t) is a continuous function. (It is not hard to show that hN (t) is actually an analytic function. See Exercise 6.)
+The defining property of the delta function is that when one integrates a delta function times a continuous function, the integration returns the value of the function at the point at which the delta function tends to infinity. Let us consider the integral of hN (t) times a continuous function g(t). Because hN (t) is a combination of functions that are periodic with period Ts ≡ 1/Fs, so is hN (t). We consider the behavior of hN (t) on the interval [−Ts/2, Ts/2). Because of the periodicity of hN (t), the behavior of hN (t) on all other such intervals must be essentially the same.
+6 1 Understanding Sampling
+Let us break the integral of interest into three pieces. One piece will consist of the points near t = 0—where we know that the sum becomes very large as N becomes very large. The other pieces will consist of the rest of the points. We consider
+Considering the value of the last integral, we find that
+We would like to show that this integral tends to zero as N → ∞. Note that if g(t) is nicely behaved in the interval [1/N 2/5, Ts/2] then, since sin(πFst) is never zero in this interval, g(t)/ sin(πFst) is also nicely behaved in the interval. Let us consider
+where r(t) is assumed to be once continuously differentiable. Making use of integration by parts, we find that
+Assuming that for small t we know that |r(t)| < K1/|t| and |rt(t)| < K2/|t 2— as is the case for g(t)/ sin(πFst)—we find that as N → ∞, the value of the integral tends to zero. By identical reasoning, we find that as N → ∞,
+1.2 The Ideal Sampler in the Frequency Domain 7
+Thus, everything hinges on the behavior of the integral
+That is, everything hinges on the values of g(t) near t = 0.
+Let us assume that g(t) is four times continuously differentiable at t = 0.
+Then, we know that g(t) satisfies
+g(t) = g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 for some ξ between 0 and t [17]. This allows us to conclude that
+× g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 dt.
+We claim that the contribution to the limit from the terms
+gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)
+is zero. Because the function multiplying g(t) is even, the contribution made by gt(0)t must be zero. The product of the two functions is odd, and the region is symmetric. Similarly, the contribution from gttt(0)t3/6 must be zero.
+Next consider
+Clearly g(4)(ξ)(ξ4/24) is of order (1/N 2/5)4 for t ∈ [−1/N 2/5, 1/N 2/5]. Considering (1.1) and making use of the triangle inequality:
+it is clear that
+As the interval over which we are integrating is of width 2/N 2/5, it is clear that the contribution of this integral tends to zero as N → ∞. Let us consider
+8 1 Understanding Sampling
+It is clear that
+As N → ∞, this term also tends to zero. Thus, to calculate the integral of interest, all one needs to calculate is
+Substituting u = π(2N + 1)Fst, we find that we must calculate
+Note that as N → ∞, we find that u/(2N +1) is always small in the region over which we are integrating. It is, therefore, easy to justify replacing sin[u/(2N + 1)] by u/(2N + 1). After making that substitution, we must calculate
+This last integral is well known; its value is π [3, p. 193]. We find that
+Thus, as N → ∞, the function hN (t) behaves like Tsδ(t) in the region [−Ts/2, Ts/2]. By periodicity, we find that as N → ∞,
+We have found that
+\ e2πjnFst.
+1.2 The Ideal Sampler in the Frequency Domain 9
+The ideal sampler takes a function, g(t), and multiplies it by another “function,” Δ(t). Thus, in the frequency domain it convolves the Fourier transform of g(t), G(f ), with the Fourier transform of Δ(t).
+What is the Fourier transform of Δ(t)? Proceeding with impunity, we state that
+F(Δ(t))(f ) = Fs \ F(e2πjnFst)(f ) = Fs
+It is (relatively) easy to see that when one convolves a function with a shifted delta function one “moves” the center of the function to the location of the “center” of the delta function. Thus, the convolution of G(f ) with the train of delta functions leaves us with copies of the Fourier transform of G(f ) that are spaced every Fs Hz. We find that the Fourier transform of the ideally sampled function is
+Let us assume that G(f ) is band-limited:
+Consider, for example, G(f ) as given in Figure 1.1. When considering the sum of shifted versions of G(f ), we find that two possibilities exist. If F is sufficiently small, then the different copies of G(f ) do not overlap, and we can see each copy clearly. See Figure 1.2. If, on the other hand, F is too large, then there is overlap between the different shifted versions of G(f ), and it is no longer possible to “see” G(f ) by simply looking at the sum of the shifted version of G(f ).
+Fig. 1.1. The spectrum of the band-limited function G(f )
+10 1 Understanding Sampling
+Fig. 1.2. The spectrum of the ideally sampled function when there is no overlap between copies
+If the copies of G(f ) do not overlap, then by low-pass filtering the signal one can recover the original signal. When will the Fourier transforms not overlap? Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs − F . That is, we must require that
+That is, we must require that the highest frequency in the signal be less than half of the sampling frequency. This is the content of the celebrated Nyquist sampling theorem, and one half the sampling rate is known as the Nyquist frequency2.
+1.3 Necessity of the Condition
+We have shown that if the highest frequency in a signal is less than half the sampling rate, then it is possible to reconstruct the signal from its samples. It is easy to show that if the highest frequency in a signal is greater than or equal to the half the sampling frequency, then it is not generally possible to reconstruct the signal.
+Consider, for example, the function g(t) = sin[2πF t]. Let us take 2F samples per second at the times t = k/(2F ). The sampling frequency is exactly twice the frequency of the signal being sampled. We find that the samples of the signal are g[k/(2F )] = sin(πk) = 0. That is, all of our samples are zeros. As these samples are the same as those of the function h(t) = 0, there is no way to distinguish the samples of the signal sin(2πF t) from those of the signal h(t) ≡ 0. There is, therefore, no way to reconstruct g(t) from its samples.
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+1.4 An Interesting Example
+1.6 The Net Effect 11
+Suppose that g(t) = cos(2πFst) and that one is sampling Fs times per second. As we are violating the Nyquist criterion—we are sampling at the same frequency as the highest frequency present—we should not find that the sampledand-held signal looks similar to the original signal.
+Let us use Fourier analysis (which is certainly not the easy way here) to see what the output of the sample-and-hold element will be. The Fourier transform of our signal is two delta functions, each of strength 1/2, located at ±Fs. After sampling, these become a train of delta functions located at nFs each with strength Fs. After passing this signal through the “hold block” we find that all the delta functions at nFs,n /= 0 are multiplied by zero and are removed. The delta function at f = 0 is multiplied by Ts, and we are left with FsTsδ(f ) = δ(f ). This is the transform of g˜(t) = 1. Thus, we find that after the sample-and-hold operation the cosine becomes a “one.” See Figure
+1.3. (Show that the output of the sample-and-hold element is one in a second way. Consider only the sample-and-hold operation, and do not use Fourier transforms at all.)
+1.5 Aliasing
+Suppose that one samples a cosine of frequency F at the sampling rate Fs where Fs > F > Fs/2 and then “reconstructs” the signal using an ideal lowpass filter that passes all frequencies up to Fs/2. What frequency will one see at the output of the filter?
+In Figure 1.4, we see the spectrum of the unsampled cosine and of the ideally sampled cosine. If we low-pass filter the sampled cosine using a lowpass filter whose cut-off frequency is Fs/2 (and that amplifies by a factor of Ts) then at the output of the filter we will have two impulses of strength 1/2. They will be located at Fs −F and at −Fs + F . This is the Fourier transform of cos(2π(Fs − F )t). We find that the reconstructed signal appears at the wrong frequency. This phenomenon is known as aliasing. In order to avoid this problem, one must place an analog low-pass filter whose cut-off frequency is less than or equal to the Nyquist frequency before the input to the sampling circuitry. Such a filter is known as an anti-aliasing filter.
+1.6 The Net Effect
+Consider what happens when one has an ideal sampler followed by a hold “circuit” of the type described previously. The ideal sampler makes copies of the spectrum of the signal every Fs Hz. The hold circuit then filters this new signal. How does the filtering work? Let us consider H(f ) again:
+12 1 Understanding Sampling
+Fig. 1.3. A simple example of aliasing
+1.6 The Net Effect 13
+Fig. 1.4. A more general example of aliasing
+A simple application of the triangle inequality, |a + b|≤ |a| + |b|, shows that
+This is a low-pass filter of sorts.
+The spectrum at the output of the sample-and-hold element is
+Vout(f ) =
+14 1 Understanding Sampling
+For relatively small values of f we find that e−πjf Ts and sin(πf /Fs)/(πf/Fs) are both near 1. When f is small we see that
+Vout(f ) ≈ Vin(f ), |f| << Fs.
+Let us consider how the rest of the copies of the spectrum are affected by this filtering. At f = nFs, the sine term is zero. Thus, near multiples of the sampling frequency the contribution of the copies is small. In fact, as long as the sampling frequency is much greater than the largest frequency in the signal, the contribution that the copies of the spectrum will make to the spectrum of the output of the sample-and-hold element will be small. If the sampling rate is not high enough, this is not true. See Exercise 7.
+1.7 Undersampling
+Suppose that one has a real signal all of whose energy is located between the frequencies F1 and F2 (and −F2 and −F1) where F2 > F1. A naive application of the Nyquist sampling theorem would lead one to conclude that in order to preserve the information in the signal, one must sample the signal at a rate exceeding 2F2 samples per second. This, however, need not be so.
+Consider the following example. Suppose that one has a signal whose energy lies between 2 and 4 kHz (exclusive of the endpoints). If one samples the signal at a rate of 4,000 sample per second, then one finds that the spectrum is copied into non-overlapping regions. Thus, after such sampling it is still possible to recover the signal. Sampling at a frequency that is less than the Nyquist frequency is called undersampling . Generally speaking, in order to be able to reconstruct a signal from its samples, one must sample the signal at a frequency that exceeds twice the signal’s bandwidth.
+1.8 The Experiment
+1. Write a program for the ADuC841 that causes the microcontroller to sample a signal 1,000 times each second. Use channel 0 of the ADC for the sampling operation.
+2. Have the program move the samples from the ADC’s registers to the registers that “feed” DAC 0. This will cause the samples to be output by DAC 0.
+3. Connect a signal generator to the ADC and an oscilloscope to the DAC.
+4. Use a variety of inputs to the ADC. Make sure that some of the inputs are well below the Nyquist frequency, that some are near the Nyquist frequency, and that some exceed the Nyquist frequency. Record the oscilloscope’s output.
+1.9 The Report
+1.10 Exercises 15
+Make sure that your report includes the program you wrote, the plots that you captured, and an explanation of the extent to which your plots agree with the theory described in this chapter.
+1.10 Exercises
+1. Suppose g(t) = sin(2πFst) and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+2. Show that the frequency response of a filter whose impulse response is
+0 otherwise
+3. Show that H(f )—the frequency response of the “hold element”—can be written as
+4. Let H(f ) be given by the function
+0 otherwise .
+If one uses an ideal sampler to sample h(t) every Ts = 0.5 ms, what will the spectrum of the resulting signal be?
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+Note that as both the numerator and the denominator are analytic functions and the quotient is continuous, the quotient must be analytic. (This can be proved using Morera’s theorem [3, p. 133], for example.)
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation. Can you identify the 5 Hz sinewave from its sampled version? What about the 49 Hz sinewave? Explain why the oscilloscope traces look the way they do.
