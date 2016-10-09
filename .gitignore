@@ -90,3 +90,9 @@ ENV/
 
 output/
 .DS_Store
+
+input/
+
+.idea/
+
+config.json
