@@ -1,7 +1,6 @@
 import re
-from nltk.corpus import word
 
-wordlist_path = './wordlist/words.txt'
+wordlist_path = './word_list/words.txt'
 
 stopwords = [
     "a", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
@@ -252,11 +251,11 @@ def merge_duplicateline(file_str):
 # checking each word in dictionary
 # initialization
 with open(wordlist_path, 'r') as wordlist_file:
-    english_words = set(word.strip() for word in wordlist_file)  # is .lower() needed? -check word.txt
+    english_words = set(word.strip().lower() for word in wordlist_file)  # is .lower() needed? -check word.txt
 
 
 def is_englishword(word):
-    return word in english_words
+    return word.lower().strip('.,!()') in english_words
 
 
 # checking function
@@ -269,18 +268,18 @@ def check_english(string):
                 result_line.append(word)
             else:
                 result_line.append('[FORMULA]')
-        ' '.join(result_line)
-        result_str.append(result_line)
+        result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
 
 
 class Clean():
     methods = [string_validation,
-               remove_formula,
-               remove_inlineformula,
+               # remove_formula,
+               # remove_inlineformula,
                join_brokenwords,
                replace_known,
                remove_nonascii,
+               check_english,
                merge_placeholder
                ]
 
@@ -288,11 +287,12 @@ class Clean():
         if (len(method_list) > 0):
             self.methods = method_list
 
-    def clean(self, txt, debug=0):
+    def clean(self, txt, path='./output/', file_name='debug.txt', debug=0):
+        if debug:
+            open(path+file_name, 'w').truncate()
         for m in self.methods:
             txt = m(txt)
             if debug:
-                print('\n\n{}\n\n{}'.format(m, txt))
+                print('\n\n{}\n\n{}'.format(m, txt), file=open(path+file_name, 'a'))
         return txt
-
 
