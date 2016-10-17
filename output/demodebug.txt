@@ -1,0 +1,315 @@
+
+
+<function string_validation at 0x10137d9d8>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold.
+1.1 The Sample-and-hold Operation
+Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g˜(t) defined by
+Y (f ) = F(y(t))(f ) ≡ e−2πjfty(t) dt.
+It is easy enough to calculate the Fourier transform of h(t)—the frequency response of the filter—it is simply
+(See Exercise 2.)
+let us consider Δ(t) to be a periodic function. Then its Fourier series is [7]
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e−2πjN t \ e2πjnFst
+1 − e2πjFst
+When t = m/Fs, it is easy to see that hN (t) = 2N + 1. 
+Because hN (t) is a combination of functions that are periodic with period Ts ≡ 1/Fs, so is hN (t). We consider the behavior of hN (t) on the interval [−Ts/2, Ts/2). Because of the periodicity of hN (t), the behavior of hN (t) on all other such intervals must be essentially the same.
+Assuming that for small t we know that |r(t)| < K1/|t| and |rt(t)| < K2/|t 2— as is the case for g(t)/ sin(πFst)—we find that as N → ∞,
+g(t) = g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 for some ξ between 0 and t [17]. This allows us to conclude that
+× g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 dt.
+The ideal sampler takes a function, g(t), and multiplies it by another “function,” Δ(t). 
+Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs − F . That is, we must require that
+and one half the sampling rate is known as the Nyquist frequency2.
+Consider, for example, the function g(t) = sin[2πF t]. Let us take 2F samples per second at the times t = k/(2F ). We find that the samples of the signal are g[k/(2F )] = sin(πk) = 0. 
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+For relatively small values of f we find that e−πjf Ts and sin(πf /Fs)/(πf/Fs) are both near 1. When f is small we see that
+Vout(f ) ≈ Vin(f ), |f| << Fs.
+1. Suppose g(t) = sin(2πFst) and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+3. Show that H(f )—the frequency response of the “hold element”—can be written as
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation. 
+1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
+2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
+3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
+1. Cause MATLAB to generate 256 samples of a sinewave.
+2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
+
+
+<function join_brokenwords at 0x10137dd08>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold.
+1.1 The Sample-and-hold Operation
+Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g˜(t) defined by
+Y (f ) = F(y(t))(f ) ≡ e−2πjfty(t) dt.
+It is easy enough to calculate the Fourier transform of h(t)—the frequency response of the filter—it is simply
+(See Exercise 2.)
+let us consider Δ(t) to be a periodic function. Then its Fourier series is [7]
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e−2πjN t \ e2πjnFst
+1 − e2πjFst
+When t = m/Fs, it is easy to see that hN (t) = 2N + 1. 
+Because hN (t) is a combination of functions that are periodic with period Ts ≡ 1/Fs, so is hN (t). We consider the behavior of hN (t) on the interval [−Ts/2, Ts/2). Because of the periodicity of hN (t), the behavior of hN (t) on all other such intervals must be essentially the same.
+Assuming that for small t we know that |r(t)| < K1/|t| and |rt(t)| < K2/|t 2— as is the case for g(t)/ sin(πFst)—we find that as N → ∞,
+g(t) = g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 for some ξ between 0 and t [17]. This allows us to conclude that
+× g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 dt.
+The ideal sampler takes a function, g(t), and multiplies it by another “function,” Δ(t). 
+Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs − F . That is, we must require that
+and one half the sampling rate is known as the Nyquist frequency2.
+Consider, for example, the function g(t) = sin[2πF t]. Let us take 2F samples per second at the times t = k/(2F ). We find that the samples of the signal are g[k/(2F )] = sin(πk) = 0. 
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+For relatively small values of f we find that e−πjf Ts and sin(πf /Fs)/(πf/Fs) are both near 1. When f is small we see that
+Vout(f ) ≈ Vin(f ), |f| << Fs.
+1. Suppose g(t) = sin(2πFst) and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+3. Show that H(f )—the frequency response of the “hold element”—can be written as
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation. 
+1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
+2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
+3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
+1. Cause MATLAB to generate 256 samples of a sinewave.
+2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
+
+
+<function replace_known at 0x10137d8c8>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold.
+1.1 The Sample-and-hold Operation
+Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g˜(t) defined by
+Y (f ) = F(y(t))(f ) ≡ e−2πjfty(t) dt.
+It is easy enough to calculate the Fourier transform of h(t)—the frequency response of the filter—it is simply
+(See Exercise 2.)
+let us consider Δ(t) to be a periodic function. Then its Fourier series is [7]
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e−2πjN t \ e2πjnFst
+1 − e2πjFst
+When t = m/Fs, it is easy to see that hN (t) = 2N + 1. 
+Because hN (t) is a combination of functions that are periodic with period Ts ≡ 1/Fs, so is hN (t). We consider the behavior of hN (t) on the interval [−Ts/2, Ts/2). Because of the periodicity of hN (t), the behavior of hN (t) on all other such intervals must be essentially the same.
+Assuming that for small t we know that |r(t)| < K1/|t| and |rt(t)| < K2/|t 2— as is the case for g(t)/ sin(πFst)—we find that as N → ∞,
+g(t) = g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 for some ξ between 0 and t [17]. This allows us to conclude that
+× g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 dt.
+The ideal sampler takes a function, g(t), and multiplies it by another “function,” Δ(t). 
+Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs − F . That is, we must require that
+and one half the sampling rate is known as the Nyquist frequency2.
+Consider, for example, the function g(t) = sin[2πF t]. Let us take 2F samples per second at the times t = k/(2F ). We find that the samples of the signal are g[k/(2F )] = sin(πk) = 0. 
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+For relatively small values of f we find that e−πjf Ts and sin(πf /Fs)/(πf/Fs) are both near 1. When f is small we see that
+Vout(f ) ≈ Vin(f ), |f| << Fs.
+1. Suppose g(t) = sin(2πFst) and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+3. Show that H(f )—the frequency response of the “hold element”—can be written as
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation. 
+1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
+2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
+3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
+1. Cause MATLAB to generate 256 samples of a sinewave.
+2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
+
+
+<function remove_nonascii at 0x10139f0d0>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold.
+1.1 The Sample-and-hold Operation
+Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g(t) defined by
+Y (f ) = F(y(t))(f )  e2jfty(t) dt.
+It is easy enough to calculate the Fourier transform of h(t)the frequency response of the filterit is simply
+(See Exercise 2.)
+let us consider (t) to be a periodic function. Then its Fourier series is [7]
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e2jN t \ e2jnFst
+1  e2jFst
+When t = m/Fs, it is easy to see that hN (t) = 2N + 1. 
+Because hN (t) is a combination of functions that are periodic with period Ts  1/Fs, so is hN (t). We consider the behavior of hN (t) on the interval [Ts/2, Ts/2). Because of the periodicity of hN (t), the behavior of hN (t) on all other such intervals must be essentially the same.
+Assuming that for small t we know that |r(t)| < K1/|t| and |rt(t)| < K2/|t 2 as is the case for g(t)/ sin(Fst)we find that as N  ,
+g(t) = g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)()4/24 for some  between 0 and t [17]. This allows us to conclude that
+ g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)()4/24 dt.
+The ideal sampler takes a function, g(t), and multiplies it by another function, (t). 
+Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs  F . That is, we must require that
+and one half the sampling rate is known as the Nyquist frequency2.
+Consider, for example, the function g(t) = sin[2F t]. Let us take 2F samples per second at the times t = k/(2F ). We find that the samples of the signal are g[k/(2F )] = sin(k) = 0. 
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+For relatively small values of f we find that ejf Ts and sin(f /Fs)/(f/Fs) are both near 1. When f is small we see that
+Vout(f )  Vin(f ), |f| << Fs.
+1. Suppose g(t) = sin(2Fst) and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+3. Show that H(f )the frequency response of the hold elementcan be written as
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the zero-order hold block to perform the sample-and-hold operation. 
+1. S. K. Mitra, Digital Signal ProcessingA Computer Aided Approach, McGraw-Hill, 1998.
+2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
+3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
+1. Cause MATLAB to generate 256 samples of a sinewave.
+2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
+
+
+<function remove_inlinefunction at 0x10137dea0>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold.
+1.1 The Sample-and-hold Operation
+Given a function g[FORMULA], if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g[FORMULA] defined by
+Y [FORMULA] = F(y[FORMULA])[FORMULA]  e2jfty[FORMULA] dt.
+It is easy enough to calculate the Fourier transform of h[FORMULA]the frequency response of the filterit is simply
+(See Exercise 2.)
+let us consider [FORMULA] to be a periodic function. Then its Fourier series is [7]
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e2jN t \ e2jnFst
+1  e2jFst
+When t = m/Fs, it is easy to see that hN [FORMULA] = 2N + 1. 
+Because hN [FORMULA] is a combination of functions that are periodic with period Ts  1/Fs, so is hN [FORMULA]. We consider the behavior of hN [FORMULA] on the interval [Ts/2, Ts/2). Because of the periodicity of hN [FORMULA], the behavior of hN [FORMULA] on all other such intervals must be essentially the same.
+Assuming that for small t we know that |r[FORMULA]| < K1/|t| and |rt[FORMULA]| < K2/|t 2 as is the case for g[FORMULA]/ sin[FORMULA]we find that as N  ,
+g[FORMULA] = g[FORMULA] + gt[FORMULA]t + gtt[FORMULA]t2/2 + gttt[FORMULA]t3/6 + g[FORMULA]()4/24 for some  between 0 and t [17]. This allows us to conclude that
+ g[FORMULA] + gt[FORMULA]t + gtt[FORMULA]t2/2 + gttt[FORMULA]t3/6 + g[FORMULA]()4/24 dt.
+The ideal sampler takes a function, g[FORMULA], and multiplies it by another function, [FORMULA]. 
+Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs  F . That is, we must require that
+and one half the sampling rate is known as the Nyquist frequency2.
+Consider, for example, the function g[FORMULA] = sin[2F t]. Let us take 2F samples per second at the times t = k/[FORMULA]. We find that the samples of the signal are g[k/[FORMULA]] = sin[FORMULA] = 0. 
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+For relatively small values of f we find that ejf Ts and sin(f /Fs)/(f/Fs) are both near 1. When f is small we see that
+Vout[FORMULA]  Vin[FORMULA], |f| << Fs.
+1. Suppose g[FORMULA] = sin[FORMULA] and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+3. Show that H[FORMULA]the frequency response of the hold elementcan be written as
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the zero-order hold block to perform the sample-and-hold operation. 
+1. S. K. Mitra, Digital Signal ProcessingA Computer Aided Approach, McGraw-Hill, 1998.
+2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
+3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
+1. Cause MATLAB to generate 256 samples of a sinewave.
+2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
+
+
+<function check_english at 0x10139f268>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [FORMULA] we consider how [FORMULA] a signal affects the signals Fourier transform. We derive the [FORMULA] sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
+Keywords. sample and hold.
+[FORMULA] The Sample and hold Operation
+Given a function [FORMULA] if one samples the function when t [FORMULA] [FORMULA] and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function [FORMULA] defined by
+Y [FORMULA] [FORMULA] [FORMULA]  [FORMULA] [FORMULA]
+It is easy enough to calculate the Fourier transform of [FORMULA] frequency response of the [FORMULA] is simply
+(See Exercise [FORMULA]
+let us consider [FORMULA] to be a periodic function. Then its Fourier series is [FORMULA]
+Rewriting [FORMULA] and making use of the properties of the geometric series, we find that for t [FORMULA] [FORMULA]
+[FORMULA] [FORMULA] t [FORMULA] [FORMULA]
+[FORMULA]  [FORMULA]
+When t [FORMULA] [FORMULA] it is easy to see that [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] 
+Because [FORMULA] [FORMULA] is a combination of functions that are periodic with period [FORMULA]  [FORMULA] so is [FORMULA] [FORMULA] We consider the behavior of [FORMULA] [FORMULA] on the interval [FORMULA] [FORMULA] Because of the periodicity of [FORMULA] [FORMULA] the behavior of [FORMULA] [FORMULA] on all other such intervals must be essentially the same.
+Assuming that for small t we know that [FORMULA] [FORMULA] [FORMULA] and [FORMULA] [FORMULA] [FORMULA] [FORMULA] as is the case for [FORMULA] [FORMULA] find that as N  ,
+[FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] for some  between [FORMULA] and t [FORMULA] This allows us to conclude that
+ [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA]
+The ideal sampler takes a function, [FORMULA] and multiplies it by another function, [FORMULA] 
+Considering Figure [FORMULA] it is clear that in order to prevent overlap, we must require that F [FORMULA] Fs  F . That is, we must require that
+and one half the sampling rate is known as the [FORMULA] [FORMULA]
+Consider, for example, the function [FORMULA] [FORMULA] [FORMULA] [FORMULA] Let us take [FORMULA] samples per second at the times t [FORMULA] [FORMULA] We find that the samples of the signal are [FORMULA] [FORMULA] [FORMULA] [FORMULA] [FORMULA] 
+[FORMULA] The sampling theorem was published by H. [FORMULA] in [FORMULA] and was proved by
+[FORMULA] [FORMULA] in [FORMULA] See [FORMULA] for more information about the history of the [FORMULA] sampling theorem.
+For relatively small values of f we find that [FORMULA] [FORMULA] and [FORMULA] [FORMULA] are both near [FORMULA] When f is small we see that
+[FORMULA]  [FORMULA] [FORMULA] [FORMULA] Fs.
+[FORMULA] Suppose [FORMULA] [FORMULA] [FORMULA] and one uses a sample and hold element that samples at the times
+Using Fourier transforms, calculate what the sampled and held waveform will be.
+[FORMULA] Show that [FORMULA] frequency response of the hold [FORMULA] be written as
+[FORMULA] Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in f and has period Fs.
+[FORMULA] Show that the function
+a) Periodic with period [FORMULA]
+b) Continuous on the whole real line.
+[FORMULA] [FORMULA] Understanding Sampling
+[FORMULA] Construct a [FORMULA]
+model that samples a signal [FORMULA] times per sec 
+[FORMULA] and outputs the samples to an oscilloscope. Input a [FORMULA] of frequency [FORMULA] [FORMULA] and one of frequency [FORMULA] [FORMULA] You may use the zero order hold block to perform the sample and hold operation. 
+[FORMULA] S. K. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [FORMULA]
+[FORMULA] E. C. [FORMULA] and B. W. [FORMULA] Digital Signal Processing, A Practical Approach, Prentice Hall, [FORMULA]
+[FORMULA] A. Bateman and I. [FORMULA] [FORMULA] The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [FORMULA]
+[FORMULA] Cause [FORMULA] to generate [FORMULA] samples of a [FORMULA]
+[FORMULA] Have [FORMULA] store the samples in a format that is appropriate for an assembly language program.
+
+
+<function merge_placeholder at 0x10139f048>
+
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [FORMULA] we consider how [FORMULA] a signal affects the signals Fourier transform. We derive the [FORMULA] sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
+Keywords. sample and hold.
+[FORMULA] The Sample and hold Operation
+Given a function [FORMULA] if one samples the function when t [FORMULA]and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function [FORMULA] defined by
+Y [FORMULA] [FORMULA]
+It is easy enough to calculate the Fourier transform of [FORMULA] frequency response of the [FORMULA] is simply
+(See Exercise [FORMULA]
+let us consider [FORMULA] to be a periodic function. Then its Fourier series is [FORMULA]
+Rewriting [FORMULA] and making use of the properties of the geometric series, we find that for t [FORMULA]
+[FORMULA]t [FORMULA]
+[FORMULA]  [FORMULA]
+When t [FORMULA]it is easy to see that [FORMULA]
+Because [FORMULA]is a combination of functions that are periodic with period [FORMULA]  [FORMULA] so is [FORMULA]We consider the behavior of [FORMULA]on the interval [FORMULA]Because of the periodicity of [FORMULA]the behavior of [FORMULA]on all other such intervals must be essentially the same.
+Assuming that for small t we know that [FORMULA]and [FORMULA]as is the case for [FORMULA]find that as N  ,
+[FORMULA]for some  between [FORMULA] and t [FORMULA] This allows us to conclude that
+ [FORMULA]
+The ideal sampler takes a function, [FORMULA] and multiplies it by another function, [FORMULA] 
+Considering Figure [FORMULA] it is clear that in order to prevent overlap, we must require that F [FORMULA] Fs  F . That is, we must require that
+and one half the sampling rate is known as the [FORMULA]
+Consider, for example, the function [FORMULA]Let us take [FORMULA] samples per second at the times t [FORMULA]We find that the samples of the signal are [FORMULA]
+[FORMULA] The sampling theorem was published by H. [FORMULA] in [FORMULA] and was proved by
+[FORMULA]in [FORMULA] See [FORMULA] for more information about the history of the [FORMULA] sampling theorem.
+For relatively small values of f we find that [FORMULA]and [FORMULA]are both near [FORMULA] When f is small we see that
+[FORMULA]  [FORMULA]Fs.
+[FORMULA] Suppose [FORMULA]and one uses a sample and hold element that samples at the times
+Using Fourier transforms, calculate what the sampled and held waveform will be.
+[FORMULA] Show that [FORMULA] frequency response of the hold [FORMULA] be written as
+[FORMULA] Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in f and has period Fs.
+[FORMULA] Show that the function
+a) Periodic with period [FORMULA]
+b) Continuous on the whole real line.
+[FORMULA]Understanding Sampling
+[FORMULA] Construct a [FORMULA]
+model that samples a signal [FORMULA] times per sec 
+[FORMULA] and outputs the samples to an oscilloscope. Input a [FORMULA] of frequency [FORMULA]and one of frequency [FORMULA]You may use the zero order hold block to perform the sample and hold operation. 
+[FORMULA] S. K. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [FORMULA]
+[FORMULA] E. C. [FORMULA] and B. W. [FORMULA] Digital Signal Processing, A Practical Approach, Prentice Hall, [FORMULA]
+[FORMULA] A. Bateman and I. [FORMULA]The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [FORMULA]
+[FORMULA] Cause [FORMULA] to generate [FORMULA] samples of a [FORMULA]
+[FORMULA] Have [FORMULA] store the samples in a format that is appropriate for an assembly language program.
