@@ -89134,13 +89134,11 @@ dsname
 dsnames
 dsp
 dsr
-dsri
-dt
+dsr
 dt's
 dtd
 dtente
 dtset
-du
 duad
 duadic
 duads
@@ -90132,8 +90130,6 @@ dwined
 dwines
 dwining
 dwt
-dx
-dy
 dyable
 dyad
 dyadic
@@ -316014,7 +316010,6 @@ trysts
 tryt
 trytophan
 tryworks
-ts
 tsade
 tsades
 tsadi
