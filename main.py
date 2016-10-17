@@ -7,6 +7,7 @@ text = open(input_path + 'demofile.txt', 'r').read()
 cleaner = Clean()
 
 text_cleaned = cleaner.clean(text, output_path, 'demodebug.txt', debug=1)
+cleaner.checkcorrected(text_cleaned, output_path, 'checktruth.txt',)
 
 
 output_file = open(output_path + 'demooutput.txt', 'w+')
