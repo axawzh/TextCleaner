@@ -1,15 +1,23 @@
 from cleaner import Clean
 
-output_path = './output/'
-input_path = './input/'
-text = open(input_path + 'demofile.txt', 'r').read()
+# output_path = './output/'
+# input_path = './input/'
+# text = open(input_path + 'demofile.txt', 'r').read()
+#
+# cleaner = Clean()
+#
+# text_cleaned = cleaner.clean(text, output_path, 'demodebug.txt', debug=1)
+# cleaner.checksample(text_cleaned, output_path, 'checktruth.txt',)
+#
+#
+# output_file = open(output_path + 'demooutput.txt', 'w+')
+# output_file.write(text_cleaned)
+# output_file.close()
 
-cleaner = Clean()
 
-text_cleaned = cleaner.clean(text, output_path, 'demodebug.txt', debug=1)
-cleaner.checkcorrected(text_cleaned, output_path, 'checktruth.txt',)
+class CleanStart(object):
+    cleaner = Clean()
 
-
-output_file = open(output_path + 'demooutput.txt', 'w+')
-output_file.write(text_cleaned)
-output_file.close()
+    def run(self, text):
+        text_cleaned = self.cleaner.clean_server(text)
+        return text_cleaned
