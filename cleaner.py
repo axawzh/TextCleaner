@@ -1,6 +1,6 @@
-import re
+import re, os
 
-wordlist_path = './word_list/words.txt'
+wordlist_path = "/Users/Zhenghao/Documents/URECA/TextCleaner/word_list/words.txt"
 
 KNOWN_REPLACEMENTS = [
     ('ﬁ', 'fi'), ('ﬂ', 'fl'), ('``', '"'), ("''", '"'), ('_', '-'), ('–', '-')
@@ -67,11 +67,6 @@ def string_validation(string):
         else:
             result_str.append(line)
     return '\n'.join(result_str)
-
-
-def remove_stopwords(string):
-    string = ' '.join([word for word in string.split() if word not in stopwords])
-    return string
 
 
 def remove_shortwords(string):
@@ -215,7 +210,7 @@ def check_english(string):
     return '\n'.join(result_str)
 
 
-class Clean():
+class Clean(object):
     methods = [string_validation,
                # remove_formula,
                # remove_inlineformula,
@@ -240,7 +235,12 @@ class Clean():
                 print('\n\n{}\n\n{}'.format(m, txt), file=open(path+file_name, 'a'))
         return txt
 
-    def checkcorrected(self, txt, path='./onput/', file_name_output='checkcorrected.txt', file_name_corrected='correcteddemotext.txt'):
+    def clean_server(self, txt):
+        for m in self.methods:
+            txt = m(txt)
+        return txt
+
+    def checksample(self, txt, path='./onput/', file_name_output='checkcorrected.txt', file_name_corrected='correcteddemotext.txt'):
         file = open(path+file_name_corrected, 'r')
         open(path+file_name_output, 'w').truncate()
         cleaned_line = txt.splitlines()
