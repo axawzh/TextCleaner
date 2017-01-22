@@ -23843,7 +23843,6 @@ azygous
 azyme
 azymite
 azymous
-b
 b'hoy
 b's
 b/l
@@ -41590,7 +41589,6 @@ byzantine
 byzantium
 byzants
 bz
-c
 c's
 c/d
 c/f
@@ -72203,7 +72201,6 @@ czechoslovakians
 czechoslovaks
 czechs
 czigany
-d
 d'
 d'accord
 d'art
@@ -90461,7 +90458,6 @@ dzerin
 dzeron
 dziggetai
 dzo
-e
 e'en
 e'er
 e's
@@ -104079,7 +104075,6 @@ ezba
 ezekiel
 ezod
 ezra
-f
 f's
 fa
 faade
@@ -115749,7 +115744,6 @@ fyrdung
 fytte
 fyttes
 fz
-g
 g's
 ga
 gaatch
@@ -126056,7 +126050,6 @@ gyve
 gyved
 gyves
 gyving
-h
 h'm
 h's
 ha
@@ -152024,7 +152017,6 @@ izvozchik
 izzard
 izzards
 izzat
-j
 j'adoube
 j'ouvert
 j's
@@ -154593,7 +154585,6 @@ juxtatropical
 jymold
 jyngine
 jynx
-k
 k's
 ka
 kaaba
@@ -158144,7 +158135,6 @@ kythes
 kything
 kytoon
 kyu
-l
 l'addition
 l'chaim
 l'envoy
@@ -167447,7 +167437,6 @@ lytta
 lyttae
 lyttas
 lyxose
-m
 m's
 m/s
 ma
@@ -186000,7 +185989,6 @@ myzostomidan
 myzostomous
 mzee
 mzungu
-n
 n'gana
 n'importe
 n's
@@ -199019,7 +199007,6 @@ nystagmus
 nystatin
 nytril
 nyxis
-o
 o'
 o'clock
 o'er
@@ -211296,7 +211283,6 @@ ozophene
 ozostomia
 ozotype
 ozs
-p
 p's
 pa
 paal
@@ -244636,7 +244622,6 @@ pyxidium
 pyxie
 pyxies
 pyxis
-q
 q's
 qabbala
 qabbalah
@@ -246387,7 +246372,6 @@ qurush
 qurushes
 qv
 qy
-r
 r's
 ra
 raad
@@ -262825,7 +262809,6 @@ rype
 rypeck
 rypophobia
 rytidosis
-s
 s'elp
 s'help
 s's
@@ -300264,7 +300247,6 @@ syzygy
 szaibelyite
 szlachta
 szopelka
-t
 t'
 t'other
 t's
@@ -318055,7 +318037,6 @@ tzitzith
 tzolkin
 tzontle
 tzuris
-u
 u's
 uakari
 ualis
@@ -340704,7 +340685,6 @@ uzara
 uzarin
 uzaron
 uzbek
-v
 v's
 va
 vaad
@@ -345858,7 +345838,6 @@ vyase
 vying
 vyingly
 vyrnwy
-w
 w's
 w/
 w/o
@@ -352300,7 +352279,6 @@ wyve
 wyver
 wyvern
 wyverns
-x
 x'ing
 x's
 xalostockite
@@ -352730,7 +352708,6 @@ xysts
 xystum
 xystus
 xyz
-y
 y's
 ya
 yaba
@@ -353772,7 +353749,6 @@ yuzlik
 yuzluk
 ywca
 ywis
-z
 z's
 za
 zabaglione
@@ -354978,3 +354954,10 @@ zythem
 zythum
 zyzzyva
 zyzzyvas
+
+discretizing
+filterit
+Nyquist
+elementcan
+sinewave
+MATLAB

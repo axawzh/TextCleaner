@@ -1,6 +1,6 @@
 import re, os
 
-wordlist_path = "/Users/Zhenghao/Documents/URECA/TextCleaner/word_list/words.txt"
+wordlist_path = "E:\GitHub\TextCleaner\word_list\words.txt"
 
 KNOWN_REPLACEMENTS = [
     ('ﬁ', 'fi'), ('ﬂ', 'fl'), ('``', '"'), ("''", '"'), ('_', '-'), ('–', '-')
@@ -101,7 +101,7 @@ def lower_firstword(string):  # lowering the capitalized first letter
 
 
 def join_brokenwords(string):  # joining the broken words together
-    return re.sub(r'\b- \b', '', string)
+    return re.sub(r'\b-\n\b', '', string)
 
 
 def remove_inlineformula(string):  # remove formulas that hide inside a sentence
@@ -168,7 +168,7 @@ def remove_figuretitles(string):
 def merge_placeholder(string):
     result_str = []
     for line in string.splitlines():
-        result_str.append(re.sub(r'(\[FORMULA\]([,.]| ?)?){2,}', '[FORMULA]', line))
+        result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', '[FORMULA]', line))
     return '\n'.join(result_str)
 
 
@@ -205,7 +205,12 @@ def check_english(string):
             if is_englishword(word):
                 result_line.append(word)
             else:
-                result_line.append('[FORMULA]')
+                if word.endswith(','):
+                    result_line.append('[FORMULA],')
+                elif word.endswith('.'):
+                    result_line.append('[FORMULA].')
+                else:
+                    result_line.append('[FORMULA]')
         result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
 
@@ -232,7 +237,7 @@ class Clean(object):
         for m in self.methods:
             txt = m(txt)
             if debug:
-                print('\n\n{}\n\n{}'.format(m, txt), file=open(path+file_name, 'a'))
+                print('\n\n{}\n\n{}'.format(m, txt), file=open(path+file_name, 'a', encoding='UTF-8'))
         return txt
 
     def clean_server(self, txt):
@@ -241,7 +246,7 @@ class Clean(object):
         return txt
 
     def checksample(self, txt, path='./onput/', file_name_output='checkcorrected.txt', file_name_corrected='correcteddemotext.txt'):
-        file = open(path+file_name_corrected, 'r')
+        file = open(path+file_name_corrected, 'r', encoding='UTF-8')
         open(path+file_name_output, 'w').truncate()
         cleaned_line = txt.splitlines()
         corrected_text = file.read().splitlines()
@@ -249,6 +254,6 @@ class Clean(object):
             if cleaned_line[i] != corrected_text[i]:
                 print('============\nLINE ' + str(i) + '\nCLEAN RESULT: '+cleaned_line[i]\
                       + '\nGROUND TRUTH: ' + corrected_text[i] + '\n============',\
-                      file=open(path+file_name_output, 'a'))
+                      file=open(path+file_name_output, 'a', encoding='UTF-8'))
 
 

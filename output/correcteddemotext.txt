@@ -32,8 +32,7 @@ a) Periodic with period [FORMULA].
 b) Continuous on the whole real line.
 [FORMULA] Understanding Sampling
 7. Construct a SimulinkOr
-model that samples a signal 100 times per sec-
-ond and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA] Hz and one of frequency [FORMULA] Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation. 
+model that samples a signal 100 times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA] Hz and one of frequency [FORMULA] Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation.
 1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
 2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
 3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
