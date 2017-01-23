@@ -12,7 +12,7 @@ Rewriting [FORMULA] and making use of the properties of the geometric series, we
 [FORMULA]
 When [FORMULA], it is easy to see that [FORMULA]. 
 Because [FORMULA] is a combination of functions that are periodic with period [FORMULA], so is [FORMULA]. We consider the behavior of [FORMULA] on the interval [FORMULA]. Because of the periodicity of [FORMULA], the behavior of [FORMULA] on all other such intervals must be essentially the same.
-Assuming that for small t we know that [FORMULA] and [FORMULA] as is the case for [FORMULA]we find that as [FORMULA],
+Assuming that for small [FORMULA] we know that [FORMULA] and [FORMULA] as is the case for [FORMULA]we find that as [FORMULA],
 [FORMULA] for some  between [FORMULA] and [FORMULA]. This allows us to conclude that
 [FORMULA].
 The ideal sampler takes a function, [FORMULA], and multiplies it by another “function,” [FORMULA]. 

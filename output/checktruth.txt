@@ -21,7 +21,7 @@ GROUND TRUTH: It is easy enough to calculate the Fourier transform of [FORMULA]t
 ============
 LINE 14
 CLEAN RESULT: Assuming that for small [FORMULA] we know that [FORMULA] and [FORMULA] as is the case for [FORMULA] find that as [FORMULA]  ,
-GROUND TRUTH: Assuming that for small t we know that [FORMULA] and [FORMULA] as is the case for [FORMULA]we find that as [FORMULA],
+GROUND TRUTH: Assuming that for small [FORMULA] we know that [FORMULA] and [FORMULA] as is the case for [FORMULA]we find that as [FORMULA],
 ============
 ============
 LINE 16
