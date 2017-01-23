@@ -354956,8 +354956,6 @@ zyzzyva
 zyzzyvas
 
 discretizing
-filterit
 Nyquist
-elementcan
 sinewave
 MATLAB
