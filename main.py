@@ -2,7 +2,7 @@ from cleaner import Clean
 
 output_path = './output/'
 input_path = './input/'
-text = open(input_path + 'demofile.txt', 'r').read()
+text = open(input_path + 'demofile.txt', 'r', encoding='UTF-8').read()
 
 cleaner = Clean()
 
