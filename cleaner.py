@@ -1,6 +1,6 @@
 import re, os
 
-wordlist_path = "E:\GitHub\TextCleaner\word_list\words.txt"
+wordlist_path = "./word_list/words.txt"
 
 KNOWN_REPLACEMENTS = [
     ('ﬁ', 'fi'), ('ﬂ', 'fl'), ('``', '"'), ("''", '"'), ('_', '-'), ('–', '-')
