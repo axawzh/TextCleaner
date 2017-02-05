@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TextCleaner.iml" filepath="$PROJECT_DIR$/.idea/TextCleaner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nlp-task-master/.idea/nlp-task-master.iml" filepath="$PROJECT_DIR$/../nlp-task-master/.idea/nlp-task-master.iml" />
     </modules>
   </component>
 </project>

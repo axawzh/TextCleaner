@@ -88,5 +88,10 @@ ENV/
 # Rope project settings
 .ropeproject
 
-output/
 .DS_Store
+
+input/
+
+.idea/
+
+config.json

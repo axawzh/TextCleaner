@@ -1,0 +1,41 @@
+Understanding Sampling
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold.
+1.1 The Sample-and-hold Operation
+Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g˜(t) defined by
+Y (f ) = F(y(t))(f ) ≡ e−2πjfty(t) dt.
+It is easy enough to calculate the Fourier transform of h(t)—the frequency response of the filter—it is simply
+(See Exercise 2.)
+let us consider Δ(t) to be a periodic function. Then its Fourier series is [7]
+Rewriting (1.1) and making use of the properties of the geometric series, we find that for t /= m/Fs,
+= e−2πjN t \ e2πjnFst
+1 − e2πjFst
+When t = m/Fs, it is easy to see that hN (t) = 2N + 1. 
+Because hN (t) is a combination of functions that are periodic with period Ts ≡ 1/Fs, so is hN (t). We consider the behavior of hN (t) on the interval [−Ts/2, Ts/2). Because of the periodicity of hN (t), the behavior of hN (t) on all other such intervals must be essentially the same.
+Assuming that for small t we know that |r(t)| < K1/|t| and |rt(t)| < K2/|t 2— as is the case for g(t)/ sin(πFst)—we find that as N → ∞,
+g(t) = g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 for some ξ between 0 and t [17]. This allows us to conclude that
+× g(0) + gt(0)t + gtt(0)t2/2 + gttt(0)t3/6 + g(4)(ξ)ξ4/24 dt.
+The ideal sampler takes a function, g(t), and multiplies it by another “function,” Δ(t). 
+Considering Figure 1.2, it is clear that in order to prevent overlap, we must require that F < Fs − F . That is, we must require that
+and one half the sampling rate is known as the Nyquist frequency2.
+Consider, for example, the function g(t) = sin[2πF t]. Let us take 2F samples per second at the times t = k/(2F ). We find that the samples of the signal are g[k/(2F )] = sin(πk) = 0. 
+2 The sampling theorem was published by H. Nyquist in 1928, and was proved by
+C.E. Shannon in 1949. See [18] for more information about the history of the Nyquist sampling theorem.
+For relatively small values of f we find that e−πjf Ts and sin(πf /Fs)/(πf/Fs) are both near 1. When f is small we see that
+Vout(f ) ≈ Vin(f ), |f| << Fs.
+1. Suppose g(t) = sin(2πFst) and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
+3. Show that H(f )—the frequency response of the “hold element”—can be written as
+5. Show that the spectrum of an ideally sampled signal as given in (1.2) is periodic in f and has period Fs.
+6. Show that the function
+a) Periodic with period 1.
+b) Continuous on the whole real line.
+16 1 Understanding Sampling
+7. Construct a SimulinkOr
+model that samples a signal 100 times per sec-
+ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 Hz and one of frequency 49 Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation. 
+1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
+2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
+3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
+1. Cause MATLAB to generate 256 samples of a sinewave.
+2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
