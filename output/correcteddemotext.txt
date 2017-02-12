@@ -1,4 +1,6 @@
 Understanding Sampling
+test case [FORMULA]
+test case [FORMULA]
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [FORMULA], we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold.
 1.1 The Sample-and-hold Operation

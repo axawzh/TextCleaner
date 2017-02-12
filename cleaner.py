@@ -169,6 +169,7 @@ def merge_placeholder(string):
     result_str = []
     for line in string.splitlines():
         result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', '[FORMULA]', line))
+
     return '\n'.join(result_str)
 
 
@@ -192,25 +193,41 @@ with open(wordlist_path, 'r') as wordlist_file:
 
 
 def is_englishword(word):
-    return word.lower().strip('.,!()') in english_words
+    return word.lower() in english_words
 
+def is_number(word):
+    try:
+        float(word)
+        return True
+    except ValueError:
+        return False
+
+def remove_double_parentheses(word):
+    return re.sub(r'\]\]', ']', word)
 
 # checking function
+endingPunctuation = (",", ".", "!", "?", "(", ")", "[", "]")
+placeholder = ['[FORMULA]', '[NUMERIC]']
 def check_english(string):
     result_str = []
+    stripped_punctuation = ''
     for line in string.strip().splitlines():
         result_line = []
         # for word in line.strip().split(" "):
         for word in re.split(r' |-', line):
+            if word in placeholder:
+                break
+            if word.endswith(endingPunctuation):
+                stripped_punctuation = word[-1]    # Use hard coding so far, replace if have better method
+                word = word.rstrip(".,!()[]")
             if is_englishword(word):
-                result_line.append(word)
+                result_line.append(word+stripped_punctuation)
             else:
-                if word.endswith(','):
-                    result_line.append('[FORMULA],')
-                elif word.endswith('.'):
-                    result_line.append('[FORMULA].')
+                if is_number(word):
+                    result_line.append(remove_double_parentheses('[NUMERIC]'+stripped_punctuation))
                 else:
-                    result_line.append('[FORMULA]')
+                    result_line.append(remove_double_parentheses('[FORMULA]'+stripped_punctuation))
+            stripped_punctuation = ''  # reset to empty to prepare for next loop
         result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
 
