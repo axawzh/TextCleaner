@@ -168,6 +168,11 @@ def remove_figuretitles(string):
 def merge_placeholder(string):
     result_str = []
     for line in string.splitlines():
+        # line = re.sub(r'(\[NUMERIC\]( |,)*){1,}\[NUMERIC\]', '[NUMERIC]', line)
+        # result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', '[FORMULA]', line))
+        line = re.sub(r'(\[NUMERIC\]( |,)*){1,}\[NUMERIC\]', '[NUMERIC]', line)
+        line = re.sub(r'(\[FORMULA\] ?|\[NUMERIC\] ?)?(\[FORMULA\] ?\[NUMERIC\] ?)+', '[FORMULA]', line)
+        line = re.sub(r'\[NUMERIC\] +\[FORMULA\] ?', '[FORMULA]', line)
         result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', '[FORMULA]', line))
 
     return '\n'.join(result_str)
@@ -207,29 +212,36 @@ def remove_double_parentheses(word):
 
 # checking function
 endingPunctuation = (",", ".", "!", "?", "(", ")", "[", "]")
-placeholder = ['[FORMULA]', '[NUMERIC]']
+placeholder = ['[FORMULA]', '[NUMERIC]', '[BULLET]']
 def check_english(string):
     result_str = []
     stripped_punctuation = ''
-    for line in string.strip().splitlines():
+    for line in string.strip().splitlines():    # Break into lines
         result_line = []
         # for word in line.strip().split(" "):
-        for word in re.split(r' |-', line):
-            if word in placeholder:
-                break
-            if word.endswith(endingPunctuation):
-                stripped_punctuation = word[-1]    # Use hard coding so far, replace if have better method
-                word = word.rstrip(".,!()[]")
-            if is_englishword(word):
-                result_line.append(word+stripped_punctuation)
+        for word in re.split(r' |-', line):     # Break into words
+            if word in placeholder:             # Do not check placeholders
+                result_line.append(word)
             else:
-                if is_number(word):
-                    result_line.append(remove_double_parentheses('[NUMERIC]'+stripped_punctuation))
+                if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
+                    stripped_punctuation = word[-1]    # Use hard coding so far, replace if have better method
+                    word = word.rstrip(".,!()[]")
+                if is_englishword(word):
+                    result_line.append(word+stripped_punctuation)
                 else:
-                    result_line.append(remove_double_parentheses('[FORMULA]'+stripped_punctuation))
+                    if is_number(word):
+                        result_line.append(remove_double_parentheses('[NUMERIC]'+stripped_punctuation))
+                    else:
+                        result_line.append(remove_double_parentheses('[FORMULA]'+stripped_punctuation))
             stripped_punctuation = ''  # reset to empty to prepare for next loop
         result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
+
+
+def remove_bullet_pts(string):
+    new_string = re.sub(r'(?:[0-9]\))|(?:[a-z]\))', '[BULLET]', string)
+    return new_string
+
 
 
 class Clean(object):
@@ -240,6 +252,7 @@ class Clean(object):
                replace_known,
                remove_nonascii,
                remove_inlinefunction,
+               remove_bullet_pts,
                check_english,
                merge_placeholder
                ]
