@@ -1,27 +1,17 @@
 ============
-LINE 2
-CLEAN RESULT: test case [NUMERIC] [FORMULA] [NUMERIC] [FORMULA] [NUMERIC]
-GROUND TRUTH: test case [FORMULA]
-============
-============
 LINE 3
 CLEAN RESULT: Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
 GROUND TRUTH: Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [FORMULA], we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 ============
 ============
 LINE 4
-CLEAN RESULT: Keywords. sample and hold.
+CLEAN RESULT: Keywords. sample and hold. [NUMERIC]
 GROUND TRUTH: Keywords. sample-and-hold.
 ============
 ============
 LINE 5
 CLEAN RESULT: [NUMERIC] The Sample and hold Operation
 GROUND TRUTH: 1.1 The Sample-and-hold Operation
-============
-============
-LINE 7
-CLEAN RESULT: [FORMULA]
-GROUND TRUTH: [FORMULA].
 ============
 ============
 LINE 8
@@ -34,33 +24,8 @@ CLEAN RESULT: [FORMULA] Exercise [NUMERIC])
 GROUND TRUTH: (See Exercise [FORMULA]
 ============
 ============
-LINE 10
-CLEAN RESULT: let us consider
-GROUND TRUTH: let us consider [FORMULA] to be a periodic function. Then its Fourier series is [FORMULA]
-============
-============
-LINE 11
-CLEAN RESULT: Rewriting [FORMULA]) and making use of the properties of the geometric series, we find that for [FORMULA],
-GROUND TRUTH: Rewriting [FORMULA] and making use of the properties of the geometric series, we find that for [FORMULA],
-============
-============
-LINE 13
-CLEAN RESULT: [NUMERIC]  [FORMULA]
-GROUND TRUTH: [FORMULA]
-============
-============
-LINE 14
-CLEAN RESULT: When [FORMULA], it is easy to see that [FORMULA]
-GROUND TRUTH: When [FORMULA], it is easy to see that [FORMULA]. 
-============
-============
-LINE 15
-CLEAN RESULT: Because [FORMULA]
-GROUND TRUTH: Because [FORMULA] is a combination of functions that are periodic with period [FORMULA], so is [FORMULA]. We consider the behavior of [FORMULA] on the interval [FORMULA]. Because of the periodicity of [FORMULA], the behavior of [FORMULA] on all other such intervals must be essentially the same.
-============
-============
 LINE 16
-CLEAN RESULT: Assuming that for small [FORMULA] we know that [FORMULA] and [FORMULA] [NUMERIC] as is the case for [FORMULA] find that as [FORMULA]  ,
+CLEAN RESULT: Assuming that for small [FORMULA] we know that [FORMULA] and [FORMULA]as is the case for [FORMULA] find that as [FORMULA]  ,
 GROUND TRUTH: Assuming that for small [FORMULA] we know that [FORMULA] and [FORMULA] as is the case for [FORMULA]we find that as [FORMULA],
 ============
 ============
@@ -80,18 +45,13 @@ GROUND TRUTH: The ideal sampler takes a function, [FORMULA], and multiplies it b
 ============
 ============
 LINE 20
-CLEAN RESULT: Considering Figure [NUMERIC], it is clear that in order to prevent overlap, we must require that [FORMULA] Fs  [FORMULA] . That is, we must require that
+CLEAN RESULT: Considering Figure [NUMERIC], it is clear that in order to prevent overlap, we must require that [FORMULA] . That is, we must require that
 GROUND TRUTH: Considering Figure [FORMULA], it is clear that in order to prevent overlap, we must require that [FORMULA] . That is, we must require that
 ============
 ============
 LINE 21
 CLEAN RESULT: and one half the sampling rate is known as the Nyquist [FORMULA].
 GROUND TRUTH: and one half the sampling rate is known as the Nyquist frequency2.
-============
-============
-LINE 22
-CLEAN RESULT: Consider, for example, the function [FORMULA]. Let us take [FORMULA] samples per second at the times [FORMULA]. We find that the samples of the signal are [FORMULA] [NUMERIC]. 
-GROUND TRUTH: Consider, for example, the function [FORMULA]. Let us take [FORMULA] samples per second at the times [FORMULA]. We find that the samples of the signal are [FORMULA]. 
 ============
 ============
 LINE 23
@@ -105,12 +65,12 @@ GROUND TRUTH: C.E. Shannon in 1949. See [FORMULA] for more information about the
 ============
 ============
 LINE 25
-CLEAN RESULT: For relatively small values of [FORMULA] we find that [FORMULA] and [FORMULA]) are both near [NUMERIC]. When [FORMULA] is small we see that
+CLEAN RESULT: For relatively small values of [FORMULA] we find that [FORMULA] and [FORMULA] are both near [NUMERIC]. When [FORMULA] is small we see that
 GROUND TRUTH: For relatively small values of f we find that [FORMULA] and [FORMULA] are both near [FORMULA]. When f is small we see that
 ============
 ============
 LINE 26
-CLEAN RESULT: [FORMULA] Fs.
+CLEAN RESULT: [FORMULA].
 GROUND TRUTH: [FORMULA], [FORMULA].
 ============
 ============
@@ -130,7 +90,7 @@ GROUND TRUTH: 3. Show that [FORMULA]the frequency response of the “hold elemen
 ============
 ============
 LINE 30
-CLEAN RESULT: [NUMERIC]. Show that the spectrum of an ideally sampled signal as given in [FORMULA]) is periodic in [FORMULA] and has period Fs.
+CLEAN RESULT: [NUMERIC]. Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in [FORMULA] and has period [FORMULA].
 GROUND TRUTH: 5. Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in f and has period Fs.
 ============
 ============
@@ -140,17 +100,17 @@ GROUND TRUTH: 6. Show that the function
 ============
 ============
 LINE 32
-CLEAN RESULT: a) Periodic with period [NUMERIC].
+CLEAN RESULT: [BULLET] Periodic with period [NUMERIC].
 GROUND TRUTH: a) Periodic with period [FORMULA].
 ============
 ============
 LINE 33
-CLEAN RESULT: [FORMULA]) Continuous on the whole real line.
+CLEAN RESULT: [BULLET] Continuous on the whole real line.
 GROUND TRUTH: b) Continuous on the whole real line.
 ============
 ============
 LINE 34
-CLEAN RESULT: [NUMERIC] [NUMERIC] Understanding Sampling
+CLEAN RESULT: [NUMERIC] Understanding Sampling
 GROUND TRUTH: [FORMULA] Understanding Sampling
 ============
 ============
@@ -160,7 +120,7 @@ GROUND TRUTH: 7. Construct a SimulinkOr
 ============
 ============
 LINE 36
-CLEAN RESULT: model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [NUMERIC] [FORMULA] and one of frequency [NUMERIC] [FORMULA]. You may use the zero order hold block to perform the sample and hold operation. 
+CLEAN RESULT: model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA]and one of frequency [FORMULA]. You may use the zero order hold block to perform the sample and hold operation. 
 GROUND TRUTH: model that samples a signal 100 times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA] Hz and one of frequency [FORMULA] Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation.
 ============
 ============
