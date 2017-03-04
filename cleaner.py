@@ -1,10 +1,14 @@
-import re, os
+import re, nltk, string
+from nltk.tokenize.moses import MosesDetokenizer, MosesTokenizer
 
 wordlist_path = "./word_list/words.txt"
 
 KNOWN_REPLACEMENTS = [
     ('ﬁ', 'fi'), ('ﬂ', 'fl'), ('``', '"'), ("''", '"'), ('_', '-'), ('–', '-')
 ]
+
+PUNCTUATION = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", ",", ".",
+               ":", ";", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "}", "~"]
 
 formula_pattern = r'\b[^\s]* =( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b'
 expression_pattern = r'\b( ?[+−]?\w+([\.,]\d+)? ?)([+−×*/]( ?\w+(\.\d+)? ?))+( ?= ?[+−]?\d+(\.\d+)?)?\b'  # formula without '='
@@ -207,6 +211,10 @@ def is_number(word):
     except ValueError:
         return False
 
+
+def is_punctuation(word):
+    return word in PUNCTUATION
+
 def remove_double_parentheses(word):
     return re.sub(r'\]\]', ']', word)
 
@@ -219,22 +227,28 @@ def check_english(string):
     for line in string.strip().splitlines():    # Break into lines
         result_line = []
         # for word in line.strip().split(" "):
-        for word in re.split(r' |-', line):     # Break into words
-            if word in placeholder:             # Do not check placeholders
-                result_line.append(word)
+        #for word in re.split(r' |-', line):     # Break into words
+        line_tokenized = tokenize(line)
+        for i in range(len(line_tokenized)):
+            if line_tokenized[i] in placeholder:             # Do not check placeholders
+                continue
+            elif is_englishword(line_tokenized[i]):
+                continue
+            elif is_punctuation(line_tokenized[i]):
+                continue
             else:
-                if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
-                    stripped_punctuation = word[-1]    # Use hard coding so far, replace if have better method
-                    word = word.rstrip(".,!()[]")
-                if is_englishword(word):
-                    result_line.append(word+stripped_punctuation)
+                # if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
+                #     stripped_punctuation = word[-1]    # Use hard coding so far, replace if have better method
+                #     word = word.rstrip(".,!()[]")
+                if is_number(line_tokenized[i]):
+                    #result_line.append(remove_double_parentheses('[NUMERIC]'+stripped_punctuation))
+                    line_tokenized[i] = "[NUMERIC]"
                 else:
-                    if is_number(word):
-                        result_line.append(remove_double_parentheses('[NUMERIC]'+stripped_punctuation))
-                    else:
-                        result_line.append(remove_double_parentheses('[FORMULA]'+stripped_punctuation))
+                    #result_line.append(remove_double_parentheses('[FORMULA]'+stripped_punctuation))
+                    line_tokenized[i] = "[FORMULA]"
             stripped_punctuation = ''  # reset to empty to prepare for next loop
-        result_str.append(' '.join(result_line))
+        #result_str.append(' '.join(result_line))
+        result_str.append(detokenize(line_tokenized))
     return '\n'.join(result_str)
 
 
@@ -243,11 +257,20 @@ def remove_bullet_pts(string):
     return new_string
 
 
+def tokenize(string):
+    return nltk.word_tokenize(string)
+
+
+def detokenize(lst):
+    result = "".join([" " + i if not i.startswith("'") and i not in PUNCTUATION else i for i in lst]).strip()
+    result = re.sub(r"\[ FORMULA\]", "[FORMULA]", result)
+    result = re.sub(r"\[ BULLET\]", "[BULLET]", result)
+    result = re.sub(r"\[ NUMERIC\]", "[NUMERIC]", result)
+    return result
+
 
 class Clean(object):
     methods = [string_validation,
-               # remove_formula,
-               # remove_inlineformula,
                join_brokenwords,
                replace_known,
                remove_nonascii,
