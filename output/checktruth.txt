@@ -1,17 +1,17 @@
 ============
 LINE 3
 CLEAN RESULT: Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
-GROUND TRUTH: Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [FORMULA], we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+GROUND TRUTH: Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 ============
 ============
 LINE 4
 CLEAN RESULT: Keywords. sample and hold. [NUMERIC]
-GROUND TRUTH: Keywords. sample-and-hold.
+GROUND TRUTH: Keywords. sample-and-hold. [NUMERIC]
 ============
 ============
 LINE 5
-CLEAN RESULT: [NUMERIC] The Sample and hold Operation
-GROUND TRUTH: 1.1 The Sample-and-hold Operation
+CLEAN RESULT: [BULLET] The Sample and hold Operation [FORMULA]
+GROUND TRUTH: [NUMERIC] The Sample-and-hold Operation [FORMULA]
 ============
 ============
 LINE 8
@@ -19,9 +19,19 @@ CLEAN RESULT: It is easy enough to calculate the Fourier transform of [FORMULA] 
 GROUND TRUTH: It is easy enough to calculate the Fourier transform of [FORMULA]the frequency response of the filter—it is simply
 ============
 ============
-LINE 9
-CLEAN RESULT: [FORMULA] Exercise [NUMERIC])
-GROUND TRUTH: (See Exercise [FORMULA]
+LINE 10
+CLEAN RESULT: let us consider [FORMULA] to be a periodic function. Then its Fourier series is [[NUMERIC]
+GROUND TRUTH: let us consider [FORMULA] to be a periodic function. Then its Fourier series is [FORMULA]
+============
+============
+LINE 11
+CLEAN RESULT: Rewriting ([NUMERIC]) and making use of the properties of the geometric series, we find that for [FORMULA],
+GROUND TRUTH: Rewriting [FORMULA] and making use of the properties of the geometric series, we find that for [FORMULA],
+============
+============
+LINE 15
+CLEAN RESULT: Because [FORMULA] is a combination of functions that are periodic with period [FORMULA], so is [FORMULA]. We consider the behavior of [FORMULA] on the interval [[FORMULA]. Because of the periodicity of [FORMULA], the behavior of [FORMULA] on all other such intervals must be essentially the same.
+GROUND TRUTH: Because [FORMULA] is a combination of functions that are periodic with period [FORMULA], so is [FORMULA]. We consider the behavior of [FORMULA] on the interval [FORMULA]. Because of the periodicity of [FORMULA], the behavior of [FORMULA] on all other such intervals must be essentially the same.
 ============
 ============
 LINE 16
@@ -30,7 +40,7 @@ GROUND TRUTH: Assuming that for small [FORMULA] we know that [FORMULA] and [FORM
 ============
 ============
 LINE 17
-CLEAN RESULT: [FORMULA] for some  between [NUMERIC] and [FORMULA]. This allows us to conclude that
+CLEAN RESULT: [FORMULA] for some  between [NUMERIC] and [FORMULA] [[NUMERIC]. This allows us to conclude that
 GROUND TRUTH: [FORMULA] for some  between [FORMULA] and [FORMULA]. This allows us to conclude that
 ============
 ============
@@ -44,11 +54,6 @@ CLEAN RESULT: The ideal sampler takes a function, [FORMULA], and multiplies it b
 GROUND TRUTH: The ideal sampler takes a function, [FORMULA], and multiplies it by another “function,” [FORMULA]. 
 ============
 ============
-LINE 20
-CLEAN RESULT: Considering Figure [NUMERIC], it is clear that in order to prevent overlap, we must require that [FORMULA] . That is, we must require that
-GROUND TRUTH: Considering Figure [FORMULA], it is clear that in order to prevent overlap, we must require that [FORMULA] . That is, we must require that
-============
-============
 LINE 21
 CLEAN RESULT: and one half the sampling rate is known as the Nyquist [FORMULA].
 GROUND TRUTH: and one half the sampling rate is known as the Nyquist frequency2.
@@ -60,13 +65,13 @@ GROUND TRUTH: [FORMULA] The sampling theorem was published by H. Nyquist in 1928
 ============
 ============
 LINE 24
-CLEAN RESULT: [FORMULA]. [FORMULA] in [NUMERIC]. See [FORMULA] for more information about the history of the Nyquist sampling theorem.
+CLEAN RESULT: [FORMULA]. [FORMULA] in [NUMERIC]. See [[NUMERIC] for more information about the history of the Nyquist sampling theorem.
 GROUND TRUTH: C.E. Shannon in 1949. See [FORMULA] for more information about the history of the Nyquist sampling theorem.
 ============
 ============
 LINE 25
-CLEAN RESULT: For relatively small values of [FORMULA] we find that [FORMULA] and [FORMULA] are both near [NUMERIC]. When [FORMULA] is small we see that
-GROUND TRUTH: For relatively small values of f we find that [FORMULA] and [FORMULA] are both near [FORMULA]. When f is small we see that
+CLEAN RESULT: For relatively small values of [FORMULA] we find that [FORMULA] and [FORMULA]) are both near [NUMERIC]. When [FORMULA] is small we see that
+GROUND TRUTH: For relatively small values of f we find that [FORMULA] and [FORMULA] are both near [FORMULA]. When [FORMUAL] is small we see that
 ============
 ============
 LINE 26
@@ -75,8 +80,8 @@ GROUND TRUTH: [FORMULA], [FORMULA].
 ============
 ============
 LINE 27
-CLEAN RESULT: [NUMERIC]. Suppose [FORMULA] and one uses a sample and hold element that samples at the times
-GROUND TRUTH: 1. Suppose [FORMULA] and one uses a sample-and-hold element that samples at the times
+CLEAN RESULT: [BULLET] Suppose [FORMULA] and one uses a sample and hold element that samples at the times
+GROUND TRUTH: [NUMERIC]. Suppose [FORMULA] and one uses a sample-and-hold element that samples at the times
 ============
 ============
 LINE 28
@@ -85,38 +90,23 @@ GROUND TRUTH: Using Fourier transforms, calculate what the sampled-and-held wave
 ============
 ============
 LINE 29
-CLEAN RESULT: [NUMERIC]. Show that [FORMULA] frequency response of the hold [FORMULA] be written as
-GROUND TRUTH: 3. Show that [FORMULA]the frequency response of the “hold element”—can be written as
+CLEAN RESULT: [BULLET] Show that [FORMULA] frequency response of the hold [FORMULA] be written as
+GROUND TRUTH: [NUMERIC]. Show that [FORMULA]the frequency response of the “hold element”—can be written as
 ============
 ============
 LINE 30
-CLEAN RESULT: [NUMERIC]. Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in [FORMULA] and has period [FORMULA].
-GROUND TRUTH: 5. Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in f and has period Fs.
+CLEAN RESULT: [BULLET] Show that the spectrum of an ideally sampled signal as given in ([NUMERIC]) is periodic in [FORMULA] and has period [FORMULA].
+GROUND TRUTH: [NUMERIC]. Show that the spectrum of an ideally sampled signal as given in [FORMULA] is periodic in [FORMUAL] and has period [FORMUAL].
 ============
 ============
 LINE 31
-CLEAN RESULT: [NUMERIC]. Show that the function
-GROUND TRUTH: 6. Show that the function
-============
-============
-LINE 32
-CLEAN RESULT: [BULLET] Periodic with period [NUMERIC].
-GROUND TRUTH: a) Periodic with period [FORMULA].
-============
-============
-LINE 33
-CLEAN RESULT: [BULLET] Continuous on the whole real line.
-GROUND TRUTH: b) Continuous on the whole real line.
-============
-============
-LINE 34
-CLEAN RESULT: [NUMERIC] Understanding Sampling
-GROUND TRUTH: [FORMULA] Understanding Sampling
+CLEAN RESULT: [BULLET] Show that the function
+GROUND TRUTH: [NUMERIC]. Show that the function
 ============
 ============
 LINE 35
-CLEAN RESULT: [NUMERIC]. Construct a [FORMULA]
-GROUND TRUTH: 7. Construct a SimulinkOr
+CLEAN RESULT: [BULLET] Construct a [FORMULA]
+GROUND TRUTH: [NUMERIC]. Construct a SimulinkOr
 ============
 ============
 LINE 36
@@ -125,26 +115,26 @@ GROUND TRUTH: model that samples a signal 100 times per second and outputs the s
 ============
 ============
 LINE 37
-CLEAN RESULT: [NUMERIC]. [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [NUMERIC].
+CLEAN RESULT: [BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [NUMERIC].
 GROUND TRUTH: 1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
 ============
 ============
 LINE 38
-CLEAN RESULT: [NUMERIC]. [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice Hall, [NUMERIC].
+CLEAN RESULT: [BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice Hall, [NUMERIC].
 GROUND TRUTH: 2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
 ============
 ============
 LINE 39
-CLEAN RESULT: [NUMERIC]. A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [NUMERIC].
+CLEAN RESULT: [BULLET] A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [NUMERIC].
 GROUND TRUTH: 3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
 ============
 ============
 LINE 40
-CLEAN RESULT: [NUMERIC]. Cause MATLAB to generate [NUMERIC] samples of a sinewave.
+CLEAN RESULT: [BULLET] Cause MATLAB to generate [NUMERIC] samples of a sinewave.
 GROUND TRUTH: 1. Cause MATLAB to generate 256 samples of a sinewave.
 ============
 ============
 LINE 41
-CLEAN RESULT: [NUMERIC]. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
+CLEAN RESULT: [BULLET] Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 GROUND TRUTH: 2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 ============

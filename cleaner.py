@@ -211,36 +211,47 @@ def remove_double_parentheses(word):
     return re.sub(r'\]\]', ']', word)
 
 # checking function
-endingPunctuation = (",", ".", "!", "?", "(", ")", "[", "]")
+endingPunctuation = (",", ".", "!", "?", ")", "]")
+leadingPunctuation = ("(", "[")
 placeholder = ['[FORMULA]', '[NUMERIC]', '[BULLET]']
 def check_english(string):
     result_str = []
-    stripped_punctuation = ''
+    stripped_punctuation_left = ''
+    stripped_punctuation_right = ''
     for line in string.strip().splitlines():    # Break into lines
         result_line = []
         # for word in line.strip().split(" "):
         for word in re.split(r' |-', line):     # Break into words
             if word in placeholder:             # Do not check placeholders
                 result_line.append(word)
+            elif word.rstrip(".,!?)") in placeholder:
+                result_line.append(word)
             else:
                 if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
-                    stripped_punctuation = word[-1]    # Use hard coding so far, replace if have better method
-                    word = word.rstrip(".,!()[]")
+                    stripped_punctuation_right = word[-1]    # Use hard coding so far, replace if have better method
+                    word = word.rstrip(".,!?)]")
+                if word.startswith(leadingPunctuation):
+                    stripped_punctuation_left = word[0]
+                    word = word.lstrip("([")
                 if is_englishword(word):
-                    result_line.append(word+stripped_punctuation)
+                    result_line.append(stripped_punctuation_left + word + stripped_punctuation_right)
                 else:
                     if is_number(word):
-                        result_line.append(remove_double_parentheses('[NUMERIC]'+stripped_punctuation))
+                        result_line.append(remove_double_parentheses(stripped_punctuation_left + '[NUMERIC]'+stripped_punctuation_right))
                     else:
-                        result_line.append(remove_double_parentheses('[FORMULA]'+stripped_punctuation))
-            stripped_punctuation = ''  # reset to empty to prepare for next loop
+                        result_line.append(remove_double_parentheses(stripped_punctuation_left + '[FORMULA]'+stripped_punctuation_right))
+            stripped_punctuation_left = ''
+            stripped_punctuation_right = ''  # reset to empty to prepare for next loop
         result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
 
 
-def remove_bullet_pts(string):
-    new_string = re.sub(r'(?:[0-9]\))|(?:[a-z]\))', '[BULLET]', string)
-    return new_string
+def remove_bullet_pts(text):
+    result = []
+    for line in text.strip().splitlines():
+        new_string = re.sub(r'^(?:[0-9]\)|[a-z]\))|^\d\.\d{0,3}', '[BULLET]', line)
+        result.append(new_string)
+    return '\n'.join(result)
 
 
 
