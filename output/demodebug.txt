@@ -1,10 +1,10 @@
 
 
-<function string_validation at 0x100e7dc80>
+<function string_validation at 0x106ec0ea0>
 
 Understanding Sampling
 test case 1+1=2
-test case 1 + 1 = 2
+test case 1 + 1 = 2  8 - 6 = 5
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold. 5 8 77 4
 1.1 The Sample-and-hold Operation f(x) = 4.5 + 3x
@@ -47,11 +47,11 @@ ond and outputs the samples to an oscilloscope. Input a sinewave of frequency 5 
 2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function join_brokenwords at 0x100e7df28>
+<function join_brokenwords at 0x106eca1e0>
 
 Understanding Sampling
 test case 1+1=2
-test case 1 + 1 = 2
+test case 1 + 1 = 2  8 - 6 = 5
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold. 5 8 77 4
 1.1 The Sample-and-hold Operation f(x) = 4.5 + 3x
@@ -93,11 +93,11 @@ model that samples a signal 100 times per second and outputs the samples to an o
 2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function replace_known at 0x100e7db70>
+<function replace_known at 0x106ec0d90>
 
 Understanding Sampling
 test case 1+1=2
-test case 1 + 1 = 2
+test case 1 + 1 = 2  8 - 6 = 5
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold. 5 8 77 4
 1.1 The Sample-and-hold Operation f(x) = 4.5 + 3x
@@ -139,11 +139,11 @@ model that samples a signal 100 times per second and outputs the samples to an o
 2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function remove_nonascii at 0x100ea32f0>
+<function remove_nonascii at 0x106eca510>
 
 Understanding Sampling
 test case 1+1=2
-test case 1 + 1 = 2
+test case 1 + 1 = 2  8 - 6 = 5
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold. 5 8 77 4
 1.1 The Sample-and-hold Operation f(x) = 4.5 + 3x
@@ -185,11 +185,11 @@ model that samples a signal 100 times per second and outputs the samples to an o
 2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function remove_inlinefunction at 0x100ea3158>
+<function remove_inlinefunction at 0x106eca378>
 
 Understanding Sampling
 test case 1+1=2
-test case 1 + 1 = 2
+test case 1 + 1 = 2  8 - 6 = 5
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold. 5 8 77 4
 1.1 The Sample-and-hold Operation f[FORMULA] = 4.5 + 3x
@@ -231,11 +231,11 @@ model that samples a signal 100 times per second and outputs the samples to an o
 2. Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function remove_bullet_pts at 0x100ea3620>
+<function remove_bullet_pts at 0x106eca8c8>
 
 Understanding Sampling
 test case 1+1=2
-test case 1 + 1 = 2
+test case 1 + 1 = 2  8 - 6 = 5
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 Keywords. sample-and-hold. 5 8 77 4
 [BULLET] The Sample-and-hold Operation f[FORMULA] = 4.5 + 3x
@@ -277,14 +277,14 @@ model that samples a signal 100 times per second and outputs the samples to an o
 [BULLET] Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function check_english at 0x100ea3598>
+<function check_english at 0x106eca7b8>
 
 Understanding Sampling
 test case [FORMULA]
-test case [NUMERIC] [FORMULA] [NUMERIC] [FORMULA] [NUMERIC]
-Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
-Keywords. sample and hold. [NUMERIC] [NUMERIC] [NUMERIC] [NUMERIC]
-[BULLET] The Sample and hold Operation [FORMULA] [FORMULA] [NUMERIC] [FORMULA] [FORMULA]
+test case [NUMERIC] [FORMULA] [NUMERIC] [FORMULA] [NUMERIC]  [NUMERIC] [FORMULA] [NUMERIC] [FORMULA] [NUMERIC]
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold. [NUMERIC] [NUMERIC] [NUMERIC] [NUMERIC]
+[BULLET] The Sample-and-hold Operation [FORMULA] [FORMULA] [NUMERIC] [FORMULA] [FORMULA]
 Given a function [FORMULA], if one samples the function when [FORMULA] [FORMULA] [FORMULA] and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function [FORMULA] defined by
 [FORMULA] [FORMULA] [FORMULA] [FORMULA]  [FORMULA] [FORMULA].
 It is easy enough to calculate the Fourier transform of [FORMULA] frequency response of the [FORMULA] is simply
@@ -306,8 +306,8 @@ Consider, for example, the function [FORMULA] [FORMULA] [FORMULA] [FORMULA]. Let
 [FORMULA]. [FORMULA] in [NUMERIC]. See [[NUMERIC] for more information about the history of the Nyquist sampling theorem.
 For relatively small values of [FORMULA] we find that [FORMULA] [FORMULA] and [FORMULA] [FORMULA]) are both near [NUMERIC]. When [FORMULA] is small we see that
 [FORMULA]  [FORMULA], [FORMULA] [FORMULA] [FORMULA].
-[BULLET] Suppose [FORMULA] [FORMULA] [FORMULA] and one uses a sample and hold element that samples at the times
-Using Fourier transforms, calculate what the sampled and held waveform will be.
+[BULLET] Suppose [FORMULA] [FORMULA] [FORMULA] and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
 [BULLET] Show that [FORMULA] frequency response of the hold [FORMULA] be written as
 [BULLET] Show that the spectrum of an ideally sampled signal as given in ([NUMERIC]) is periodic in [FORMULA] and has period [FORMULA].
 [BULLET] Show that the function
@@ -315,22 +315,22 @@ Using Fourier transforms, calculate what the sampled and held waveform will be.
 [BULLET] Continuous on the whole real line.
 [NUMERIC] [NUMERIC] Understanding Sampling
 [BULLET] Construct a [FORMULA]
-model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [NUMERIC] [FORMULA] and one of frequency [NUMERIC] [FORMULA]. You may use the zero order hold block to perform the sample and hold operation. 
-[BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [NUMERIC].
-[BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice Hall, [NUMERIC].
-[BULLET] A. Bateman and I. [FORMULA] [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [NUMERIC].
+model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [NUMERIC] [FORMULA] and one of frequency [NUMERIC] [FORMULA]. You may use the zero-order hold block to perform the sample-and-hold operation. 
+[BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA]-Hill, [NUMERIC].
+[BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice-Hall, [NUMERIC].
+[BULLET] A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, [NUMERIC].
 [BULLET] Cause MATLAB to generate [NUMERIC] samples of a sinewave.
 [BULLET] Have MATLAB store the samples in a format that is appropriate for an assembly language program.
 
 
-<function merge_placeholder at 0x100ea3268>
+<function merge_placeholder at 0x106eca488>
 
 Understanding Sampling
 test case [FORMULA]
 test case [FORMULA]
-Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
-Keywords. sample and hold. [NUMERIC]
-[BULLET] The Sample and hold Operation [FORMULA]
+Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
+Keywords. sample-and-hold. [NUMERIC]
+[BULLET] The Sample-and-hold Operation [FORMULA]
 Given a function [FORMULA], if one samples the function when [FORMULA] and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function [FORMULA] defined by
 [FORMULA].
 It is easy enough to calculate the Fourier transform of [FORMULA] frequency response of the [FORMULA] is simply
@@ -352,8 +352,8 @@ Consider, for example, the function [FORMULA]. Let us take [FORMULA] samples per
 [FORMULA]. [FORMULA] in [NUMERIC]. See [[NUMERIC] for more information about the history of the Nyquist sampling theorem.
 For relatively small values of [FORMULA] we find that [FORMULA] and [FORMULA]) are both near [NUMERIC]. When [FORMULA] is small we see that
 [FORMULA].
-[BULLET] Suppose [FORMULA] and one uses a sample and hold element that samples at the times
-Using Fourier transforms, calculate what the sampled and held waveform will be.
+[BULLET] Suppose [FORMULA] and one uses a sample-and-hold element that samples at the times
+Using Fourier transforms, calculate what the sampled-and-held waveform will be.
 [BULLET] Show that [FORMULA] frequency response of the hold [FORMULA] be written as
 [BULLET] Show that the spectrum of an ideally sampled signal as given in ([NUMERIC]) is periodic in [FORMULA] and has period [FORMULA].
 [BULLET] Show that the function
@@ -361,9 +361,9 @@ Using Fourier transforms, calculate what the sampled and held waveform will be.
 [BULLET] Continuous on the whole real line.
 [NUMERIC] Understanding Sampling
 [BULLET] Construct a [FORMULA]
-model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA]and one of frequency [FORMULA]. You may use the zero order hold block to perform the sample and hold operation. 
-[BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [NUMERIC].
-[BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice Hall, [NUMERIC].
-[BULLET] A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [NUMERIC].
+model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA]and one of frequency [FORMULA]. You may use the zero-order hold block to perform the sample-and-hold operation. 
+[BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA]-Hill, [NUMERIC].
+[BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice-Hall, [NUMERIC].
+[BULLET] A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, [NUMERIC].
 [BULLET] Cause MATLAB to generate [NUMERIC] samples of a sinewave.
 [BULLET] Have MATLAB store the samples in a format that is appropriate for an assembly language program.

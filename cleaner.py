@@ -1,4 +1,4 @@
-import re, os
+import re, nltk
 
 wordlist_path = "./word_list/words.txt"
 
@@ -221,30 +221,54 @@ def check_english(string):
     for line in string.strip().splitlines():    # Break into lines
         result_line = []
         # for word in line.strip().split(" "):
-        for word in re.split(r' |-', line):     # Break into words
-            if word in placeholder:             # Do not check placeholders
-                result_line.append(word)
-            elif word.rstrip(".,!?)") in placeholder:
-                result_line.append(word)
-            else:
-                if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
-                    stripped_punctuation_right = word[-1]    # Use hard coding so far, replace if have better method
-                    word = word.rstrip(".,!?)]")
-                if word.startswith(leadingPunctuation):
-                    stripped_punctuation_left = word[0]
-                    word = word.lstrip("([")
-                if is_englishword(word):
-                    result_line.append(stripped_punctuation_left + word + stripped_punctuation_right)
-                else:
-                    if is_number(word):
-                        result_line.append(remove_double_parentheses(stripped_punctuation_left + '[NUMERIC]'+stripped_punctuation_right))
+        for word_raw in re.split(r' ', line):     # Break into words
+            if contain_hyphen(word_raw):
+                word_hyphen = []
+                if word_raw.endswith(endingPunctuation):
+                    stripped_punctuation_right = word_raw[-1]
+                    word_raw = word_raw.rstrip(".,!?)]")
+                if word_raw.startswith(leadingPunctuation):
+                    stripped_punctuation_left = word_raw[0]
+                    word_raw = word_raw.lstrip("([")
+                for word in re.split(r'-', word_raw):
+                    if word in placeholder:
+                        word_hyphen.append(word)
+                    elif word.rstrip(".,!?)") in placeholder:
+                        word_hyphen.append(word)
                     else:
-                        result_line.append(remove_double_parentheses(stripped_punctuation_left + '[FORMULA]'+stripped_punctuation_right))
+                        if is_englishword(word):
+                            word_hyphen.append(word)
+                        else:
+                            word_hyphen = ["[FORMULA]"]
+                result_line.append(stripped_punctuation_left + "-".join(word_hyphen) + stripped_punctuation_right)
+            else:
+                word = word_raw
+                if word in placeholder:             # Do not check placeholders
+                    result_line.append(word)
+                elif word.rstrip(".,!?)") in placeholder:
+                    result_line.append(word)
+                else:
+                    if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
+                        stripped_punctuation_right = word[-1]    # Use hard coding so far, replace if have better method
+                        word = word.rstrip(".,!?)]")
+                    if word.startswith(leadingPunctuation):
+                        stripped_punctuation_left = word[0]
+                        word = word.lstrip("([")
+                    if is_englishword(word):
+                        result_line.append(stripped_punctuation_left + word + stripped_punctuation_right)
+                    else:
+                        if is_number(word):
+                            result_line.append(remove_double_parentheses(stripped_punctuation_left + '[NUMERIC]'+stripped_punctuation_right))
+                        else:
+                            result_line.append(remove_double_parentheses(stripped_punctuation_left + '[FORMULA]'+stripped_punctuation_right))
             stripped_punctuation_left = ''
             stripped_punctuation_right = ''  # reset to empty to prepare for next loop
         result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
 
+
+def contain_hyphen(word):
+    return "-" in word and len(word) > 1
 
 def remove_bullet_pts(text):
     result = []
@@ -253,6 +277,17 @@ def remove_bullet_pts(text):
         result.append(new_string)
     return '\n'.join(result)
 
+
+def tokenize(string):
+    return nltk.word_tokenize(string)
+
+
+def detokenize(lst):
+    result = "".join([" " + i if not i.startswith("'") and i not in PUNCTUATION else i for i in lst]).strip()
+    result = re.sub(r"\[ FORMULA\]", "[FORMULA]", result)
+    result = re.sub(r"\[ BULLET\]", "[BULLET]", result)
+    result = re.sub(r"\[ NUMERIC\]", "[NUMERIC]", result)
+    return result
 
 
 class Clean(object):

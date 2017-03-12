@@ -1,16 +1,11 @@
 ============
 LINE 3
-CLEAN RESULT: Summary. In Part I, we consider the analysis of discrete time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous time signal from its samples.
+CLEAN RESULT: Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signals Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 GROUND TRUTH: Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter [NUMERIC], we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
 ============
 ============
-LINE 4
-CLEAN RESULT: Keywords. sample and hold. [NUMERIC]
-GROUND TRUTH: Keywords. sample-and-hold. [NUMERIC]
-============
-============
 LINE 5
-CLEAN RESULT: [BULLET] The Sample and hold Operation [FORMULA]
+CLEAN RESULT: [BULLET] The Sample-and-hold Operation [FORMULA]
 GROUND TRUTH: [NUMERIC] The Sample-and-hold Operation [FORMULA]
 ============
 ============
@@ -80,13 +75,8 @@ GROUND TRUTH: [FORMULA], [FORMULA].
 ============
 ============
 LINE 27
-CLEAN RESULT: [BULLET] Suppose [FORMULA] and one uses a sample and hold element that samples at the times
+CLEAN RESULT: [BULLET] Suppose [FORMULA] and one uses a sample-and-hold element that samples at the times
 GROUND TRUTH: [NUMERIC]. Suppose [FORMULA] and one uses a sample-and-hold element that samples at the times
-============
-============
-LINE 28
-CLEAN RESULT: Using Fourier transforms, calculate what the sampled and held waveform will be.
-GROUND TRUTH: Using Fourier transforms, calculate what the sampled-and-held waveform will be.
 ============
 ============
 LINE 29
@@ -110,22 +100,22 @@ GROUND TRUTH: [NUMERIC]. Construct a SimulinkOr
 ============
 ============
 LINE 36
-CLEAN RESULT: model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA]and one of frequency [FORMULA]. You may use the zero order hold block to perform the sample and hold operation. 
+CLEAN RESULT: model that samples a signal [NUMERIC] times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA]and one of frequency [FORMULA]. You may use the zero-order hold block to perform the sample-and-hold operation. 
 GROUND TRUTH: model that samples a signal 100 times per second and outputs the samples to an oscilloscope. Input a sinewave of frequency [FORMULA] Hz and one of frequency [FORMULA] Hz. You may use the “zero-order hold” block to perform the sample-and-hold operation.
 ============
 ============
 LINE 37
-CLEAN RESULT: [BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA] Hill, [NUMERIC].
+CLEAN RESULT: [BULLET] [FORMULA]. [FORMULA]. Mitra, Digital Signal [FORMULA] Computer Aided Approach, [FORMULA]-Hill, [NUMERIC].
 GROUND TRUTH: 1. S. K. Mitra, Digital Signal Processing—A Computer Aided Approach, McGraw-Hill, 1998.
 ============
 ============
 LINE 38
-CLEAN RESULT: [BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice Hall, [NUMERIC].
+CLEAN RESULT: [BULLET] [FORMULA]. [FORMULA]. [FORMULA] and [FORMULA]. [FORMULA]. [FORMULA], Digital Signal Processing, A Practical Approach, Prentice-Hall, [NUMERIC].
 GROUND TRUTH: 2. E. C. Ifeachor and B. W. Jervis, Digital Signal Processing, A Practical Approach, Prentice-Hall, 2002.
 ============
 ============
 LINE 39
-CLEAN RESULT: [BULLET] A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice Hall, [NUMERIC].
+CLEAN RESULT: [BULLET] A. Bateman and I. [FORMULA], The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, [NUMERIC].
 GROUND TRUTH: 3. A. Bateman and I. Paterson-Stephens, The DSP Handbook, Algorithms, Applications and Design Techniques, Prentice-Hall, 2002.
 ============
 ============
