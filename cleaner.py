@@ -213,7 +213,7 @@ def remove_double_parentheses(word):
 # checking function
 endingPunctuation = (",", ".", "!", "?", ")", "]")
 leadingPunctuation = ("(", "[")
-placeholder = ['[FORMULA]', '[NUMERIC]', '[BULLET]']
+placeholder = ['[FORMULA]', '[NUMERIC]', '[BULLET]', '[REF]']
 def check_english(string):
     result_str = []
     stripped_punctuation_left = ''
@@ -254,6 +254,13 @@ def remove_bullet_pts(text):
     return '\n'.join(result)
 
 
+def remove_reference(text): # placeholder for IEEE reference
+    result = []
+    for line in text.strip().splitlines():
+        new_string = re.sub(r'\[\d]', '[REF]', line)
+        result.append(new_string)
+    return '\n'.join(result)
+
 
 class Clean(object):
     methods = [string_validation,
@@ -264,6 +271,7 @@ class Clean(object):
                remove_nonascii,
                remove_inlinefunction,
                remove_bullet_pts,
+               remove_reference,
                check_english,
                merge_placeholder
                ]
@@ -281,6 +289,7 @@ class Clean(object):
                 print('\n\n{}\n\n{}'.format(m, txt), file=open(path+file_name, 'a', encoding='UTF-8'))
         return txt
 
+    # used by the pdf-client to process and post output to server, no auxiliary files generated
     def clean_server(self, txt):
         for m in self.methods:
             txt = m(txt)
