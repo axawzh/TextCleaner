@@ -1,18 +1,32 @@
 # TextCleaner
-Text Cleaner for raw text
+Text Cleaner for raw text. Can be integrated into the pdf-client to process raw text obtained from the pdf-server and post the output back.
+
+To execute the cleaner with local text files, run `main.py`.
+
+To execute the cleaner with server, set your server account in `config.json`, and run `postBook.py`.
+
 config.json file is not included under this repo. Please use your own username and password in order to access the server.
 
+The pdf-client is available [here] (https://github.com/nathanielove/pdf-client).
+
+The pdf-server is available [here] (https://github.com/nathanielove/pdf-server).
+
 ## Input/Output files
-demofile.txt: a sample input used for testing the functions of the cleaner.
-demooutput.txt: the output of the cleaner.
-correcteddemotext.txt: the ground truth manually processed from the demofile.txt, used to ckeck the correctness of the output of the cleaner.
-checktruth.txt: a file compares the code output with the ground truth in parallel.
-demodebug: shows the changes in input text during different stages of the pipeline, used to check if each stage functions correctly.
+`demofile.txt`: a sample input used for testing the functions of the cleaner.
+
+`demooutput.txt`: the output of the cleaner.
+
+`correcteddemotext.txt`: the ground truth manually processed from the demofile.txt, used to ckeck the correctness of the output of the cleaner.
+
+`checktruth.txt`: a file compares the code output with the ground truth in parallel.
+
+`demodebug.txt`: shows the changes in input text during different stages of the pipeline, used to check if each stage functions correctly.
 
 ## `Clean` class
 ###The `method` list
 You can change the stages of the pipelines here. 
 Add function name into the list to add this function into the pipeline.
+
 Change the order of the function to change the order of the stages.
 
 ###The `clean` method 
@@ -42,7 +56,8 @@ The output path is the same as the ground truth file, which is indicated by `pat
 
 ###The `clean_server` method
 This method is used together with pdf-client to process the text and post back to the server. This is implemented in `main.py` by the `CleanStart` class. In the pdf-client, the `CleanStart` class will be imported to execute the pipeline.
-As only cleaned text files are to be post to the server. No auxiliary files should be generated such as debug file or check truth file. This is why this method does nothing other than running each stage on the input text.
+
+As only cleaned text files are to be post to the server. No auxiliary files should be generated such as debug file or check truth file. This is why the method does nothing other than running each stage on the input text.
 
 
 
