@@ -20,7 +20,7 @@ GROUND TRUTH: It is easy enough to calculate the Fourier transform of [FORMULA]t
 ============
 ============
 LINE 10
-CLEAN RESULT: let us consider [FORMULA] to be a periodic function. Then its Fourier series is [[NUMERIC]
+CLEAN RESULT: let us consider [FORMULA] to be a periodic function. Then its Fourier series is [REF]
 GROUND TRUTH: let us consider [FORMULA] to be a periodic function. Then its Fourier series is [FORMULA]
 ============
 ============
@@ -40,7 +40,7 @@ GROUND TRUTH: Assuming that for small [FORMULA] we know that [FORMULA] and [FORM
 ============
 ============
 LINE 17
-CLEAN RESULT: [FORMULA] for some  between [NUMERIC] and [FORMULA] [[NUMERIC]. This allows us to conclude that
+CLEAN RESULT: [FORMULA] for some  between [NUMERIC] and [FORMULA] [REF]. This allows us to conclude that
 GROUND TRUTH: [FORMULA] for some  between [FORMULA] and [FORMULA]. This allows us to conclude that
 ============
 ============
@@ -65,7 +65,7 @@ GROUND TRUTH: [FORMULA] The sampling theorem was published by H. Nyquist in 1928
 ============
 ============
 LINE 24
-CLEAN RESULT: [FORMULA]. [FORMULA] in [NUMERIC]. See [[NUMERIC] for more information about the history of the Nyquist sampling theorem.
+CLEAN RESULT: [FORMULA]. [FORMULA] in [NUMERIC]. See [REF] for more information about the history of the Nyquist sampling theorem.
 GROUND TRUTH: C.E. Shannon in 1949. See [FORMULA] for more information about the history of the Nyquist sampling theorem.
 ============
 ============

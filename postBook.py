@@ -8,8 +8,8 @@ from pdf_client.multithread.processor import TextProcessor
 
 from main import CleanStart
 
-# load global config
-config.load_from_file('/Users/Zhenghao/Documents/URECA/TextCleaner/config.json')
+# load global config, specify the location of the config.json here
+config.load_from_file('./config.json')
 
 
 class MyProcessor(TextProcessor):
@@ -33,7 +33,8 @@ def postbook(book_id):
     logging.basicConfig()
     logging.getLogger(pdf_client.multithread.worker.__name__).setLevel(logging.INFO)
 
-    worker = MultiThreadWorker(processor=MyProcessor(), book=book_id, target=3)
+    # change the source and target argument here to specify the source target version.
+    worker = MultiThreadWorker(processor=MyProcessor(), book=book_id, source=1, target=5)
     worker.start()
 
     # completed = worker.start()
