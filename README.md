@@ -53,14 +53,14 @@ You can also customize the output file names in `main.py`.
 
 
 ## `Clean` class in `cleaner.py`
-###The `method` list
+### The `method` list
 You can change the stages of the pipelines by modifying this list. 
 
 Define your own stages in `cleaner.py` as a function, and add your function name into the list to add new pipeline stage.
 
 Change the order of the function to change the order of the stages.
 
-###The `clean` method 
+### The `clean` method 
 This method is called in `main.py` to execute cleaner.
 
 It takes 4 arguments:
@@ -74,7 +74,7 @@ It takes 4 arguments:
 
 It runs all the stages of the pipeline on the input text and returns the processed text.
 
-###The `checksample` method
+### The `checksample` method
 The method is called in `main.py` to create a file that compares the output of the cleaner with the manually edited ground truth in parallel.
 It takes 4 arguments:
 
@@ -87,7 +87,7 @@ It takes 4 arguments:
 
 The output path is the same as the ground truth file, which is indicated by `path` argument.
 
-###The `clean_server` method
+### The `clean_server` method
 This method is used together with pdf-client to process the text and post back to the server. This is implemented in `main.py` by the `CleanStart` class. In the pdf-client, the `postBook.py` class will be imported to execute the pipeline.
 
 As only cleaned text files are to be post to the server. No auxiliary files should be generated such as debug file or check truth file. This is why the method does nothing other than running each stage on the input text.
