@@ -1,7 +1,9 @@
 Understanding Sampling
+test case 1+1=2
+test case 1 + 1 = 2
 Summary. In Part I, we consider the analysis of discrete-time signals. In Chapter 1, we consider how discretizing a signal affects the signal’s Fourier transform. We derive the Nyquist sampling theorem, and we give conditions under which it is possible to reconstruct a continuous-time signal from its samples.
-Keywords. sample-and-hold.
-1.1 The Sample-and-hold Operation
+Keywords. sample-and-hold. 5 8 77 4
+1.1 The Sample-and-hold Operation f(x) = 4.5 + 3x
 Given a function g(t), if one samples the function when t = nTs and one holds the sampled value until the next sample comes, then the result of the sampling procedure is the function g˜(t) defined by
 Y (f ) = F(y(t))(f ) ≡ e−2πjfty(t) dt.
 It is easy enough to calculate the Fourier transform of h(t)—the frequency response of the filter—it is simply

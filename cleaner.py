@@ -1,9 +1,16 @@
 import re, os
 
+# Path of the dictionary
 wordlist_path = "./word_list/words.txt"
 
+# Placeholder patterns
+placeholder_formula = "[FORMULA]"
+placeholder_numeric = "[NUMERIC]"
+placeholder_bulletpoint = "[BULLET]"
+placeholder_citation = "[REF]"
+
 KNOWN_REPLACEMENTS = [
-    ('ﬁ', 'fi'), ('ﬂ', 'fl'), ('``', '"'), ("''", '"'), ('_', '-'), ('–', '-')
+    ('ﬁ', 'fi'), ('ﬂ', 'fl'), ('``', '"'), ("''", '"'), ('_', '-'), ('–', '-'), ('—', '-')
 ]
 
 formula_pattern = r'\b[^\s]* =( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b'
@@ -16,6 +23,10 @@ range_pattern = r'−?(\d+|\w|∞)? [≤≥><] −?(\d+|\w|∞)'
 formula_pattern_alt = r'\b([ωδ\w]+ ?\([\w ωδ]+\)|[^\s]* =( ?[+−]?\w+([\.,]\d+)? ?)([+−×*]( ?\w+(\.\d+)? ?))*( ?= ?[+−]?\d+(\.\d+)?)?\b|zzz)'
 expression_pattern_alt = r'\b( ?[+−]?\w+([\.,]\w+)? ?)([+−×*/]( ?\w+(\.\d+)? ?))+( ?= ?[+−]?\d+(\.\w+)?)?\b'
 
+
+# Read the dictionary into a list for fast look-up.
+with open(wordlist_path, 'r') as wordlist_file:
+    english_words = set(word.strip().lower() for word in wordlist_file)  # is .lower() needed? -check word.txt
 
 def count_endingfullstop(string):
     num_fullstop = 0
@@ -51,11 +62,11 @@ def remove_formula(string):
         else:
             if not have_mathoperation:
                 if is_formula(string):
-                    result_str.append('[FORMULA]')
+                    result_str.append(placeholder_formula)
                 else:
                     result_str.append(line)
             else:
-                result_str.append('[FORMULA]')
+                result_str.append(placeholder_formula)
     return '\n'.join(result_str)
 
 
@@ -119,8 +130,8 @@ def remove_inlineformula(string):  # remove formulas that hide inside a sentence
         #       if have_function:
         #            string_noformula = re.sub(function_pattern, '[FORMULA]', string)
         #            string_nobracket = re.sub(r'[()]+', '', string_noformula)
-        string_noformula = re.sub(formula_pattern, '[FORMULA]', string_nobracket)
-        string_noformula = re.sub(expression_pattern, '[FORMULA]', string_noformula)
+        string_noformula = re.sub(formula_pattern, placeholder_formula, string_nobracket)
+        string_noformula = re.sub(expression_pattern, placeholder_formula, string_noformula)
         return string_noformula
     else:
         return string
@@ -135,14 +146,14 @@ def remove_inlineformula_alt(string):
         if have_formula:
             string_noformula = re.sub(formula_pattern_alt, 'zzz', line)
             string_nobracket = re.sub(r'[()]+', '', string_noformula)
-            string_noformula = re.sub(formula_pattern_alt, '[FORMULA]', string_nobracket)
+            string_noformula = re.sub(formula_pattern_alt, placeholder_formula, string_nobracket)
             if re.search(expression_pattern, string_noformula):
-                string_noformula = re.sub(expression_pattern, '[FORMULA]', string_noformula)
+                string_noformula = re.sub(expression_pattern, placeholder_formula, string_noformula)
             if have_range:
-                string_noformula = re.sub(range_pattern, '[FORMULA]', string_noformula)
+                string_noformula = re.sub(range_pattern, placeholder_formula, string_noformula)
             result_str.append(string_noformula)
         if have_range:
-            result_str.append(re.sub(range_pattern, '[FORMULA]', line))
+            result_str.append(re.sub(range_pattern, placeholder_formula, line))
         return '\n'.join(result_str)
 
 
@@ -150,7 +161,7 @@ def remove_inlineformula_alt(string):
 def remove_inlinefunction(string):  # function like 'f (n)' and 'x (1)'
     have_function = re.search(function_pattern, string)
     if have_function:
-        string = re.sub(function_pattern, '[FORMULA]', string)
+        string = re.sub(function_pattern, placeholder_formula, string)
     return string
 
 
@@ -168,7 +179,13 @@ def remove_figuretitles(string):
 def merge_placeholder(string):
     result_str = []
     for line in string.splitlines():
-        result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', '[FORMULA]', line))
+        # line = re.sub(r'(\[NUMERIC\]( |,)*){1,}\[NUMERIC\]', '[NUMERIC]', line)
+        # result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', '[FORMULA]', line))
+        line = re.sub(r'(\[NUMERIC\]( |,)*){1,}\[NUMERIC\]', placeholder_numeric, line)
+        line = re.sub(r'(\[FORMULA\] ?|\[NUMERIC\] ?)?(\[FORMULA\] ?\[NUMERIC\] ?)+', placeholder_formula, line)
+        line = re.sub(r'\[NUMERIC\] +\[FORMULA\] ?', placeholder_formula, line)
+        result_str.append(re.sub(r'(\[FORMULA\]( |,)*){1,}\[FORMULA\]', placeholder_formula, line))
+
     return '\n'.join(result_str)
 
 
@@ -185,44 +202,90 @@ def merge_duplicateline(file_str):
             result_str.append(line)
     return '\n'.join(result_str)
 
-# checking each word in dictionary
-# initialization
-with open(wordlist_path, 'r') as wordlist_file:
-    english_words = set(word.strip().lower() for word in wordlist_file)  # is .lower() needed? -check word.txt
-
 
 def is_englishword(word):
-    return word.lower().strip('.,!()') in english_words
+    return word.lower() in english_words
 
+def is_number(word):
+    try:
+        float(word)
+        return True
+    except ValueError:
+        return False
+
+def remove_double_parentheses(word):
+    return re.sub(r'\]\]', ']', word)
 
 # checking function
+endingPunctuation = (",", ".", "!", "?", ")", "]")
+leadingPunctuation = ("(", "[")
+placeholder = ['[FORMULA]', '[NUMERIC]', '[BULLET]', '[REF]']
 def check_english(string):
     result_str = []
-    for line in string.strip().splitlines():
+    stripped_punctuation_left = ''
+    stripped_punctuation_right = ''
+    for line in string.strip().splitlines():    # Break into lines
         result_line = []
         # for word in line.strip().split(" "):
-        for word in re.split(r' |-', line):
-            if is_englishword(word):
+        for word in re.split(r' |-', line):     # Break into words
+            if word in placeholder:             # Do not check placeholders
+                result_line.append(word)
+            elif word.rstrip(".,!?)") in placeholder:
                 result_line.append(word)
             else:
-                if word.endswith(','):
-                    result_line.append('[FORMULA],')
-                elif word.endswith('.'):
-                    result_line.append('[FORMULA].')
+                if word.endswith(endingPunctuation):    # If the word is the last word of the sentence
+                    stripped_punctuation_right = word[-1]    # Use hard coding so far, replace if have better method
+                    word = word.rstrip(".,!?)]")
+                if word.startswith(leadingPunctuation):
+                    stripped_punctuation_left = word[0]
+                    word = word.lstrip("([")
+                if is_englishword(word):
+                    result_line.append(stripped_punctuation_left + word + stripped_punctuation_right)
                 else:
-                    result_line.append('[FORMULA]')
+                    if is_number(word):
+                        result_line.append(remove_double_parentheses(stripped_punctuation_left + placeholder_numeric + stripped_punctuation_right))
+                    else:
+                        result_line.append(remove_double_parentheses(stripped_punctuation_left + placeholder_formula+stripped_punctuation_right))
+            stripped_punctuation_left = ''
+            stripped_punctuation_right = ''  # reset to empty to prepare for next loop
         result_str.append(' '.join(result_line))
     return '\n'.join(result_str)
 
 
+def remove_bullet_pts(text):
+    result = []
+    for line in text.strip().splitlines():
+        new_string = re.sub(r'^(?:[0-9]\)|[a-z]\))|^\d\.\d{0,3}', placeholder_bulletpoint, line)
+        result.append(new_string)
+    return '\n'.join(result)
+
+
+def remove_reference(text): # placeholder for IEEE reference
+    result = []
+    for line in text.strip().splitlines():
+        new_string = re.sub(r'\[\d+]', placeholder_citation, line)
+        result.append(new_string)
+    return '\n'.join(result)
+
+
+def remove_leading_space(text):
+    result = []
+    for line in text.strip().splitlines():
+        line = line.lstrip()
+        result.append(line)
+    return '\n'.join(result)
+
 class Clean(object):
-    methods = [string_validation,
+    methods = [# string_validation,
                # remove_formula,
                # remove_inlineformula,
                join_brokenwords,
                replace_known,
                remove_nonascii,
+               remove_leading_space,
                remove_inlinefunction,
+               remove_bullet_pts,
+               remove_reference,
                check_english,
                merge_placeholder
                ]
@@ -240,6 +303,7 @@ class Clean(object):
                 print('\n\n{}\n\n{}'.format(m, txt), file=open(path+file_name, 'a', encoding='UTF-8'))
         return txt
 
+    # used by the pdf-client to process and post output to server, no auxiliary files generated
     def clean_server(self, txt):
         for m in self.methods:
             txt = m(txt)
